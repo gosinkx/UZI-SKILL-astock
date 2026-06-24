@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+.env.local
+.cache/
+.DS_Store
+*.egg-info/
+dist/
+build/
+.cursor-plugin/
+.claude-plugin/
+.opencode/
+.codex/
+.git/

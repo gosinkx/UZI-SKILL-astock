@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "version": "2026.04",
+    "source_of_truth": "scripts/lib/seat_db.py",
+    "_note": "本 JSON 是 seat_db.py 的镜像，供 HTML 报告渲染。修改请同时改两边。",
+    "total": 22
+  },
+  "tiers": {
+    "legend": ["章盟主", "孙哥", "赵老哥", "佛山无影脚", "炒股养家"],
+    "new_gen": ["陈小群", "呼家楼", "方新侠", "作手新一", "小鳄鱼", "交易猿", "毛老板", "消闲派"],
+    "regional": ["拉萨天团", "成都帮", "苏南帮", "宁波桑田路"],
+    "new_2025": ["六一中路", "流沙河", "古北路", "北京炒家", "瑞鹤仙"]
+  },
+  "context_2025": {
+    "total_lhb_volume_trillion_cny": 5.56,
+    "vs_2024_trillion": 3.19,
+    "main_themes": ["DeepSeek", "宇树机器人", "算力", "低空经济"],
+    "institutional_favorites": ["天孚通信", "新易盛", "德明利", "东山精密"]
+  }
+}

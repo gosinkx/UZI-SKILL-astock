@@ -1,0 +1,3568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{NAME}} · 游资 SKILLS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   游资 SKILLS · FloatFu-true
+   Bento + Brutalism + Glassmorphism · OLED Dark
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  /* ───── LIGHT THEME · Bloomberg Light Terminal ───── */
+  --bg-void:     #f1f5f9;   /* slate-100, page edge */
+  --bg-deep:     #f8fafc;   /* slate-50, canvas */
+  --bg-card:     #ffffff;   /* pure white card */
+  --bg-elevated: #ffffff;
+  --bg-tinted:   #f8fafc;
+  --bg-rail:     #f1f5f9;
+
+  /* borders */
+  --border:      #e2e8f0;   /* slate-200 */
+  --border-hot:  #cbd5e1;   /* slate-300 */
+  --border-soft: #f1f5f9;
+
+  /* brand colors (more saturated for light bg) */
+  --neon-cyan:   #0891b2;   /* cyan-600 */
+  --neon-gold:   #d97706;   /* amber-600 */
+  --neon-pink:   #db2777;   /* pink-600 */
+  --bull-green:  #059669;   /* emerald-600 */
+  --bear-red:    #dc2626;   /* red-600 */
+  --warning-amber: #ea580c; /* orange-600 */
+  --accent-blue: #2563eb;   /* blue-600 */
+  --accent-indigo: #4f46e5; /* indigo-600 */
+
+  /* tinted soft fills */
+  --bull-tint: #d1fae5;     /* emerald-100 */
+  --bear-tint: #fee2e2;     /* red-100 */
+  --gold-tint: #fef3c7;     /* amber-100 */
+  --cyan-tint: #cffafe;     /* cyan-100 */
+
+  /* text — high contrast on white */
+  --text-bright: #0f172a;   /* slate-900 */
+  --text-main:   #1e293b;   /* slate-800 */
+  --text-mid:    #475569;   /* slate-600 */
+  --text-dim:    #64748b;   /* slate-500 */
+  --text-ghost:  #94a3b8;   /* slate-400 */
+
+  /* shadows for depth */
+  --shadow-sm: 0 1px 2px rgba(15,23,42,.04);
+  --shadow-md: 0 4px 12px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.04);
+  --shadow-lg: 0 12px 32px rgba(15,23,42,.10), 0 4px 12px rgba(15,23,42,.06);
+  --shadow-glow-cyan: 0 0 0 3px rgba(8,145,178,.15);
+  --shadow-glow-gold: 0 0 0 3px rgba(217,119,6,.15);
+  --shadow-brutal: 5px 5px 0 #0f172a;
+
+  /* glass effect on light = tinted white */
+  --glass-bg: rgba(255,255,255,.85);
+  --glass-border: rgba(15,23,42,.08);
+}
+
+/* ───── v3.6.0 · DARK THEME · Bloomberg Dark Terminal ───── */
+[data-theme="dark"] {
+  --bg-void:     #0a0e14;   /* obsidian */
+  --bg-deep:     #0f141b;   /* canvas */
+  --bg-card:     #161b22;   /* gh-dark card */
+  --bg-elevated: #1c2128;
+  --bg-tinted:   #161b22;
+  --bg-rail:     #0a0e14;
+  --border:      #30363d;
+  --border-hot:  #484f58;
+  --border-soft: #21262d;
+  --neon-cyan:   #22d3ee;
+  --neon-gold:   #facc15;
+  --neon-pink:   #f472b6;
+  --bull-green:  #34d399;
+  --bear-red:    #f87171;
+  --warning-amber: #fb923c;
+  --accent-blue: #60a5fa;
+  --accent-indigo: #818cf8;
+  --bull-tint:   rgba(52,211,153,.18);
+  --bear-tint:   rgba(248,113,113,.18);
+  --gold-tint:   rgba(250,204,21,.18);
+  --cyan-tint:   rgba(34,211,238,.18);
+  --text-bright: #f0f6fc;
+  --text-main:   #c9d1d9;
+  --text-mid:    #8b949e;
+  --text-dim:    #6e7681;
+  --text-ghost:  #484f58;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.4);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,.6), 0 4px 12px rgba(0,0,0,.4);
+  --shadow-glow-cyan: 0 0 0 3px rgba(34,211,238,.25);
+  --shadow-glow-gold: 0 0 0 3px rgba(250,204,21,.25);
+  --shadow-brutal: 5px 5px 0 #000000;
+  --glass-bg: rgba(22,27,34,.85);
+  --glass-border: rgba(240,246,252,.08);
+}
+
+/* dark mode · 让原本固定深色背景的元素也跟随 */
+[data-theme="dark"] .punchline { background: var(--bg-card); color: var(--text-bright); }
+[data-theme="dark"] .punchline::before { color: #0a0e14; }
+
+/* v3.6.0 · theme-toggle button in topbar */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px;
+  background: var(--bg-tinted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-mid);
+  font-size: 14px;
+  transition: all .2s;
+  margin-left: 10px;
+}
+.theme-toggle:hover { color: var(--neon-gold); border-color: var(--neon-gold); transform: rotate(20deg); }
+
+/* v3.6.0 · sticky TOC sidebar */
+.toc-rail {
+  position: fixed;
+  left: 16px; top: 50%; transform: translateY(-50%);
+  z-index: 50;
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 12px 8px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.toc-rail .toc-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 10px;
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-radius: 5px;
+  border-left: 2px solid transparent;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.toc-rail .toc-item:hover { color: var(--neon-cyan); background: var(--cyan-tint); }
+.toc-rail .toc-item.active {
+  color: var(--neon-gold);
+  border-left-color: var(--neon-gold);
+  background: var(--gold-tint);
+  font-weight: 700;
+}
+.toc-rail .toc-num { font-weight: 700; font-size: 11px; }
+/* v3.9.1 · issue #79 · TOC 折叠按钮（导航栏遮挡内容时可收起）*/
+.toc-rail .toc-toggle {
+  align-self: flex-end;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: none; cursor: pointer;
+  color: var(--text-dim); font-size: 13px; line-height: 1;
+  border-radius: 5px; transition: all .15s; margin-bottom: 2px;
+}
+.toc-rail .toc-toggle:hover { color: var(--neon-gold); background: var(--gold-tint); }
+/* 折叠态：只留一个圆形把手 · items 全藏 · 不再遮挡正文 */
+.toc-rail.collapsed {
+  padding: 6px; gap: 0;
+  left: 12px;
+}
+.toc-rail.collapsed .toc-item { display: none; }
+.toc-rail.collapsed .toc-toggle { align-self: center; margin-bottom: 0; font-size: 15px; }
+@media (max-width: 1280px) { .toc-rail { display: none; } }
+
+/* v3.6.0 · count-up number animation hint */
+.count-up { display: inline-block; font-variant-numeric: tabular-nums; }
+
+/* v3.6.0 · jargon tooltip · 鼠标悬浮显示解释 */
+.jargon {
+  border-bottom: 1px dotted var(--text-dim);
+  cursor: help;
+  position: relative;
+}
+.jargon:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  max-width: 280px;
+  white-space: normal;
+  width: 260px;
+  z-index: 100;
+  box-shadow: var(--shadow-lg);
+}
+.jargon:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 100%; left: 50%; transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--border);
+  z-index: 100;
+}
+
+/* v3.6.0 · share-card QR · 报告底部加二维码 + 链接占位（前端 JS 填充当前 URL） */
+.share-qr-card {
+  margin: 32px 0;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  display: flex; align-items: center; gap: 20px;
+}
+.share-qr-card .qr-canvas {
+  width: 100px; height: 100px;
+  background: white;
+  border-radius: 6px;
+  padding: 6px;
+  flex-shrink: 0;
+}
+.share-qr-card .qr-text {
+  flex: 1;
+}
+.share-qr-card .qr-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  letter-spacing: .14em;
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.share-qr-card .qr-desc { font-size: 13px; color: var(--text-main); line-height: 1.5; }
+.share-qr-card .qr-url {
+  margin-top: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  word-break: break-all;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg-deep);
+  color: var(--text-main);
+  font-family: 'Fira Sans', -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "tnum", "ss01";
+}
+body {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(8,145,178,.04), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 30%, rgba(217,119,6,.03), transparent 60%),
+    var(--bg-deep);
+  background-attachment: fixed;
+}
+
+/* subtle paper grain */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 99;
+  pointer-events: none; opacity: .025;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.container { position: relative; z-index: 1; max-width: 1600px; margin: 0 auto; padding: 32px 40px 80px; }
+
+/* ═══════════════ TOP BAR / OS CHROME ═══════════════ */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; margin-bottom: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.topbar .left { display: flex; align-items: center; gap: 18px; }
+.topbar .dots { display: flex; gap: 6px; }
+.topbar .dot { width: 11px; height: 11px; border-radius: 50%; }
+.topbar .dot.red    { background: var(--bear-red); }
+.topbar .dot.yellow { background: var(--neon-gold); }
+.topbar .dot.green  { background: var(--bull-green); }
+.topbar .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: .14em; color: var(--text-bright); }
+.topbar .brand span { color: var(--neon-cyan); }
+.topbar .status { display: flex; align-items: center; gap: 10px; color: var(--text-dim); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.topbar .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--bull-green); box-shadow: 0 0 10px var(--bull-green); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity:.4; } 50% { opacity:1; } }
+.market-badge {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: .12em;
+}
+.market-badge.open { background: var(--bull-tint); color: var(--bull-green); border: 1px solid var(--bull-green); }
+.market-badge.closed { background: var(--bg-tinted); color: var(--text-dim); border: 1px solid var(--border); }
+
+/* ═══════════════ DATA QUALITY BANNER · v2.3 (contrast fix v3.4.4) ═══════════════ */
+/* 用户反馈：橙底橙字看不清 · v3.4.4 提高对比度 · 关键数字用深棕色 + 加粗 */
+.data-gap-banner {
+  margin: 16px 0 24px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.10), rgba(245, 158, 11, 0.03));
+  border: 1px solid rgba(180, 83, 9, 0.55);  /* v3.4.4 边框加深 */
+  border-left: 4px solid #b45309;            /* v3.4.4 左边条深棕色 · 更醒目 */
+  border-radius: 8px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.data-gap-banner .icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.data-gap-banner .body { flex: 1; }
+/* v3.4.4 · title 用深棕 #92400e (WCAG AA 通过 on 浅橙底) · 替代之前难读的 #f59e0b */
+.data-gap-banner .title {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 15px;
+  color: #92400e; margin-bottom: 4px; letter-spacing: .04em;
+}
+.data-gap-banner .subtitle { font-size: 13px; color: #1f2937; line-height: 1.6; }  /* v3.4.4 · 深灰主文字 */
+/* v3.4.4 · subtitle 里的数字 / 关键词用深棕加粗 · 替代之前的橙底橙字 */
+.data-gap-banner .subtitle strong { color: #7c2d12; font-weight: 800; }
+.data-gap-banner .list { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+/* v3.4.4 · chip 深棕字 + 实色橙底 · 高对比 */
+.data-gap-banner .chip {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  background: rgba(245, 158, 11, 0.22);
+  color: #7c2d12;
+  border: 1px solid rgba(180, 83, 9, 0.5);
+  border-radius: 999px;
+}
+.data-gap-banner .chip.ack { background: rgba(148, 163, 184, 0.18); color: #475569; border-color: #94a3b8; text-decoration: line-through; }
+.data-gap-banner .hint { margin-top: 8px; font-size: 11px; color: #57534e; letter-spacing: .05em; }
+
+/* v3.4.4 · 基金类型 banner · 信息性提示 · 蓝色调（区别于"问题"橙色调）*/
+.data-gap-banner.fund-type {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02));
+  border: 1px solid rgba(2, 132, 199, 0.45);
+  border-left: 4px solid #0369a1;
+}
+.data-gap-banner.fund-type .title { color: #0c4a6e; }
+.data-gap-banner.fund-type .subtitle { color: #1f2937; }
+.data-gap-banner.fund-type .subtitle strong { color: #0c4a6e; }
+.data-gap-banner.fund-type .chip {
+  background: rgba(14, 165, 233, 0.15); color: #0c4a6e; border-color: rgba(2, 132, 199, 0.4);
+}
+.data-gap-banner.fund-type .hint { color: #475569; }
+
+/* v3.4.5 · 低可信度 banner · 红色调强警告（fund_score 偏低 + 覆盖率 <60%）·
+   暗示"不要看规则引擎评分 · 看 agent 重评估" */
+.data-gap-banner.low-confidence {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.10), rgba(220, 38, 38, 0.03));
+  border: 1px solid rgba(185, 28, 28, 0.55);
+  border-left: 4px solid #b91c1c;
+}
+.data-gap-banner.low-confidence .title { color: #7f1d1d; font-size: 16px; }
+.data-gap-banner.low-confidence .subtitle { color: #1f2937; }
+.data-gap-banner.low-confidence .subtitle strong { color: #7f1d1d; font-weight: 800; }
+.data-gap-banner.low-confidence .chip {
+  background: rgba(220, 38, 38, 0.18); color: #7f1d1d;
+  border-color: rgba(185, 28, 28, 0.45); font-weight: 600;
+}
+.data-gap-banner.low-confidence .hint {
+  color: #7f1d1d; font-size: 12px; font-weight: 500;
+}
+.data-gap-banner.low-confidence .hint strong { color: #7f1d1d; font-weight: 700; }
+
+/* ═══════════════ STYLE CHIP · v2.7 ═══════════════ */
+.style-chip-wrap {
+  margin: 16px 0 24px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(99, 102, 241, 0.04));
+  border: 1px solid rgba(99, 102, 241, 0.45);
+  border-left: 4px solid #6366f1;
+  border-radius: 8px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.style-chip-wrap .icon { font-size: 22px; }
+.style-chip-wrap .label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .12em; color: var(--text-dim); text-transform: uppercase; }
+.style-chip-wrap .value {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 17px; font-weight: 800;
+  color: #6366f1;
+  padding: 3px 10px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 6px;
+}
+.style-chip-wrap .hint { font-size: 12px; color: var(--text-bright); flex: 1 1 280px; line-height: 1.5; }
+.style-chip-wrap .compare {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  background: var(--bg-tinted);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.style-chip-wrap .delta-up { color: var(--bull-green); font-weight: 700; }
+.style-chip-wrap .delta-down { color: var(--bear-red); font-weight: 700; }
+
+/* ═══════════════ BENTO HERO ═══════════════ */
+.bento-hero {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.bento {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+/* NAME / PRICE card */
+.bento.name-card {
+  grid-row: span 2;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+.bento.name-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; width: 4px; bottom: 0;
+  background: linear-gradient(180deg, var(--neon-cyan), var(--accent-blue));
+}
+.ticker-label { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--neon-cyan); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 10px; }
+.stock-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--text-bright);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.stock-code {
+  font-family: 'Fira Code', monospace;
+  font-size: 18px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+}
+.one-liner {
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.7;
+  padding: 16px 18px;
+  background: var(--cyan-tint);
+  border-left: 3px solid var(--neon-cyan);
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 28px;
+}
+.price-row { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+.price {
+  font-family: 'Fira Code', monospace;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: -.02em;
+}
+.change {
+  font-family: 'Fira Code', monospace;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+.change.up { color: var(--bull-green); background: var(--bull-tint); border: 1px solid var(--bull-green); }
+.change.down { color: var(--bear-red); background: var(--bear-tint); border: 1px solid var(--bear-red); }
+.metric-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-mid);
+  background: var(--bg-tinted);
+}
+.chip strong { color: var(--text-bright); margin-right: 4px; }
+
+/* SCORE GIANT card — BRUTALISM (light edition) */
+.bento.score-card {
+  background: var(--bg-card);
+  border: 3px solid var(--text-bright);
+  box-shadow: var(--shadow-brutal);
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 240px;
+}
+.score-label { font-family: 'Fira Code', monospace; font-size: 10px; letter-spacing: .25em; color: var(--neon-gold); text-transform: uppercase; font-weight: 700; }
+.score-giant {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 160px;
+  line-height: .85;
+  color: var(--neon-gold);
+  letter-spacing: -.06em;
+  text-align: center;
+  position: relative;
+}
+.score-giant::after {
+  content: '/100';
+  position: absolute; bottom: 0; right: 16%;
+  font-size: 26px; color: var(--text-ghost);
+  font-weight: 500;
+}
+.score-verdict {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--text-bright);
+  text-align: center;
+  padding-top: 12px;
+  border-top: 2px solid var(--gold-tint);
+}
+
+/* SAFETY card */
+.bento.safety-card {
+  display: flex; align-items: center; gap: 18px;
+  padding: 20px 24px;
+}
+.bento.safety-card.green  { background: var(--bull-tint); border-color: var(--bull-green); }
+.bento.safety-card.yellow { background: var(--gold-tint); border-color: var(--neon-gold); }
+.bento.safety-card.orange { background: #fed7aa; border-color: var(--warning-amber); }
+.bento.safety-card.red    { background: var(--bear-tint); border-color: var(--bear-red); }
+.safety-icon { font-size: 40px; line-height: 1; }
+.safety-text strong { display: block; font-family: 'Fira Sans', sans-serif; font-weight: 700; color: var(--text-bright); font-size: 16px; margin-bottom: 4px; }
+.safety-text span { color: var(--text-mid); font-size: 11px; line-height: 1.5; }
+
+/* ═══════════════ SECTION HEADERS (BRUTAL) ═══════════════ */
+.section-head {
+  display: flex; align-items: center; gap: 16px;
+  margin: 48px 0 20px;
+}
+.section-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--neon-cyan);
+  letter-spacing: .2em;
+  padding: 6px 12px;
+  border: 1px solid var(--neon-cyan);
+  border-radius: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-title {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  color: var(--text-bright);
+  letter-spacing: -.02em;
+}
+.section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--neon-cyan), transparent); }
+
+/* ═══════════════ DASHBOARD 4-SECTION BENTO ═══════════════ */
+.dashboard-bento {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 14px;
+}
+.core-conclusion {
+  grid-column: span 3;
+  background: var(--cyan-tint);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 18px;
+  padding: 32px;
+  position: relative;
+  box-shadow: var(--shadow-md);
+}
+.core-conclusion::before {
+  content: '"';
+  position: absolute;
+  top: -20px; left: 20px;
+  font-family: 'Fira Sans', serif;
+  font-size: 160px;
+  color: rgba(8,145,178,.15);
+  line-height: 1;
+}
+.core-conclusion .label {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px; letter-spacing: .25em;
+  color: var(--neon-cyan); text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.core-conclusion .text {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--text-bright);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+.data-cell {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.data-cell .icon {
+  position: absolute; top: 12px; right: 14px;
+  font-size: 20px; opacity: .3;
+}
+.data-cell .key {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  letter-spacing: .2em;
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.data-cell .value {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.battle-plan {
+  grid-column: span 3;
+  background: var(--gold-tint);
+  border: 2px solid var(--neon-gold);
+  border-radius: 14px;
+  padding: 18px 28px;
+  display: grid;
+  grid-template-columns: auto repeat(4, 1fr);
+  gap: 24px;
+  align-items: center;
+  box-shadow: var(--shadow-md);
+}
+.battle-plan .plan-label {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--neon-gold);
+  letter-spacing: .05em;
+  padding-right: 24px;
+  border-right: 1px solid rgba(249,203,64,.3);
+}
+.plan-field .k { font-size: 10px; color: var(--text-dim); letter-spacing: .15em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+.plan-field .v { font-family: 'Fira Code', monospace; font-size: 15px; color: var(--text-bright); font-weight: 600; }
+
+/* ═══════════════ THE GREAT DIVIDE · 拳击擂台 ═══════════════ */
+.divide-section {
+  margin-top: 60px;
+  padding: 48px 40px 40px;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(219,39,119,.05), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 100%, rgba(5,150,105,.04), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 100%, rgba(220,38,38,.04), transparent 60%),
+    var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+/* spotlight / projector beams */
+.divide-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(115deg, transparent, transparent 60px, rgba(6,216,216,.015) 60px, rgba(6,216,216,.015) 62px),
+    repeating-linear-gradient(-115deg, transparent, transparent 60px, rgba(180,108,255,.015) 60px, rgba(180,108,255,.015) 62px);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.divide-section::before {
+  content: 'KO · KO · KO · KO';
+  position: absolute;
+  top: 30%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 200px;
+  color: rgba(15,23,42,.025);
+  letter-spacing: .12em;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+.divide-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+.divide-header .tag {
+  display: inline-block;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--neon-pink);
+  letter-spacing: .3em;
+  padding: 4px 16px;
+  border: 1px solid var(--neon-pink);
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  background: rgba(255,46,99,.05);
+  box-shadow: 0 0 20px rgba(255,46,99,.15);
+}
+.divide-header h2 {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 44px;
+  color: var(--text-bright);
+  letter-spacing: -.02em;
+  text-shadow: 0 0 30px rgba(255,255,255,.1);
+}
+.divide-header .round-info {
+  margin-top: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: .15em;
+}
+.divide-header .round-info strong { color: var(--neon-gold); }
+
+.arena {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 32px;
+  align-items: stretch;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 2;
+}
+/* ring rope effect — top and bottom */
+.arena::before, .arena::after {
+  content: '';
+  position: absolute; left: -20px; right: -20px; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--neon-gold), transparent);
+  box-shadow: 0 0 12px var(--neon-gold);
+  pointer-events: none;
+}
+.arena::before { top: -10px; }
+.arena::after { bottom: -10px; }
+.fighter {
+  padding: 32px 24px;
+  border-radius: 18px;
+  text-align: center;
+  position: relative;
+  border: 3px solid;
+  transition: transform .3s ease;
+}
+.fighter:hover { transform: translateY(-4px) scale(1.02); }
+.fighter.bull {
+  background: linear-gradient(180deg, var(--bull-tint), #ffffff);
+  border-color: var(--bull-green);
+  box-shadow: 0 12px 32px rgba(5,150,105,.15), 0 4px 12px rgba(5,150,105,.08);
+}
+.fighter.bear {
+  background: linear-gradient(180deg, var(--bear-tint), #ffffff);
+  border-color: var(--bear-red);
+  box-shadow: 0 12px 32px rgba(220,38,38,.15), 0 4px 12px rgba(220,38,38,.08);
+}
+/* health bar at top of each fighter */
+.fighter .hp-bar {
+  height: 8px;
+  background: var(--bg-tinted);
+  border: 1px solid;
+  border-radius: 4px;
+  margin: 0 -8px 14px;
+  overflow: hidden;
+  position: relative;
+}
+.fighter.bull .hp-bar { border-color: var(--bull-green); }
+.fighter.bear .hp-bar { border-color: var(--bear-red); }
+.fighter .hp-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 1.4s cubic-bezier(.2,.8,.3,1);
+}
+.fighter.bull .hp-fill {
+  background: linear-gradient(90deg, var(--bull-green), #00ffaa);
+  box-shadow: 0 0 12px var(--bull-green);
+}
+.fighter.bear .hp-fill {
+  background: linear-gradient(270deg, var(--bear-red), #ff6080);
+  box-shadow: 0 0 12px var(--bear-red);
+}
+.fighter .corner {
+  position: absolute; top: -16px;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 11px; font-weight: 900;
+  letter-spacing: .25em;
+  padding: 6px 16px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0,0,0,.4);
+}
+.fighter.bull .corner {
+  left: 16px;
+  background: var(--bull-green);
+  color: var(--bg-void);
+  box-shadow: 0 0 20px var(--bull-green), 0 4px 12px rgba(0,0,0,.4);
+}
+.fighter.bear .corner {
+  right: 16px;
+  background: var(--bear-red);
+  color: var(--text-bright);
+  box-shadow: 0 0 20px var(--bear-red), 0 4px 12px rgba(0,0,0,.4);
+}
+.fighter .avatar-box {
+  width: 128px; height: 128px;
+  margin: 0 auto 16px;
+  padding: 6px;
+  border: 3px solid;
+  border-radius: 12px;
+  background: var(--bg-card);
+}
+.fighter.bull .avatar-box { border-color: var(--bull-green); }
+.fighter.bear .avatar-box { border-color: var(--bear-red); }
+.fighter img { width: 100%; height: 100%; image-rendering: pixelated; border-radius: 6px; }
+.fighter .fighter-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--text-bright);
+  margin-bottom: 4px;
+}
+.fighter .fighter-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: .15em;
+  margin-bottom: 16px;
+}
+.fighter .confidence {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 96px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.fighter.bull .confidence { color: var(--bull-green); text-shadow: 0 0 20px rgba(0,255,157,.4); }
+.fighter.bear .confidence { color: var(--bear-red); text-shadow: 0 0 20px rgba(255,60,90,.4); }
+.fighter .conf-label { font-size: 10px; color: var(--text-dim); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 18px; }
+.fighter .quote {
+  text-align: left;
+  padding: 16px;
+  background: var(--bg-tinted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.vs-bolt {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 110px;
+  color: var(--neon-gold);
+  text-shadow: 0 0 30px rgba(249,203,64,.7), 0 0 60px rgba(249,203,64,.3);
+  line-height: 1;
+  transform: skewX(-8deg);
+  position: relative;
+  animation: vsShake 4s ease-in-out infinite;
+}
+@keyframes vsShake {
+  0%, 90%, 100% { transform: skewX(-8deg) rotate(0); }
+  92% { transform: skewX(-8deg) rotate(-3deg); }
+  94% { transform: skewX(-8deg) rotate(3deg); }
+  96% { transform: skewX(-8deg) rotate(-2deg); }
+}
+.vs-bolt .sub {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .35em;
+  color: var(--neon-pink);
+  transform: skewX(8deg);
+  margin-top: 4px;
+  padding: 4px 12px;
+  background: #fff;
+  border: 2px solid var(--neon-pink);
+  border-radius: 4px;
+}
+
+/* 3 rounds debate transcript */
+.debate-rounds {
+  margin: 32px 0;
+  display: flex; flex-direction: column; gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+.round {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+.round-label {
+  position: absolute; top: -10px; left: 20px;
+  background: var(--neon-gold);
+  border: 1px solid var(--neon-gold);
+  color: #ffffff;
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: .15em;
+}
+.round-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+.round-bull, .round-bear {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  position: relative;
+  font-family: 'Fira Sans', sans-serif;
+}
+.round-bull {
+  background: var(--bull-tint);
+  border-left: 3px solid var(--bull-green);
+  color: var(--text-main);
+}
+.round-bear {
+  background: var(--bear-tint);
+  border-right: 3px solid var(--bear-red);
+  color: var(--text-main);
+  text-align: right;
+}
+.round-vs {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--neon-gold);
+  text-shadow: 0 0 8px rgba(249,203,64,.5);
+}
+
+.punchline {
+  padding: 32px 40px;
+  background: #ffffff;
+  border: 2px solid var(--text-bright);
+  border-left: 12px solid var(--neon-gold);
+  border-radius: 8px;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.5;
+  color: var(--text-bright);
+  position: relative;
+  box-shadow: var(--shadow-brutal);
+  z-index: 2;
+}
+.punchline::before {
+  content: 'PUNCHLINE';
+  position: absolute;
+  top: -11px; left: 24px;
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: #ffffff;
+  background: var(--neon-gold);
+  padding: 2px 10px;
+  letter-spacing: .2em;
+  font-weight: 700;
+}
+
+/* ═══════════════ 50 INVESTOR PERIODIC TABLE ═══════════════ */
+.panel-section { margin-top: 60px; }
+.panel-stats { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+.stat-tile {
+  flex: 1; min-width: 140px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.stat-tile .num {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-tile.bull .num  { color: var(--bull-green); }
+.stat-tile.bear .num  { color: var(--bear-red); }
+.stat-tile.neut .num  { color: var(--text-dim); }
+.stat-tile.total .num { color: var(--neon-cyan); }
+.stat-tile .label { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: .2em; text-transform: uppercase; }
+
+.tabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+.tab {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  cursor: pointer;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: all .2s ease;
+}
+.tab:hover { color: var(--text-main); border-color: var(--border-hot); }
+.tab.active {
+  background: var(--neon-cyan); color: var(--bg-void); border-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(6,216,216,.4);
+}
+
+.investor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.inv-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.inv-card:hover { transform: translateY(-3px); border-color: var(--neon-cyan); }
+.inv-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.inv-card.bullish::before { background: var(--bull-green); box-shadow: 0 0 10px var(--bull-green); }
+.inv-card.bearish::before { background: var(--bear-red); box-shadow: 0 0 10px var(--bear-red); }
+.inv-card.neutral::before { background: var(--text-dim); }
+
+.inv-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.inv-avatar {
+  width: 44px; height: 44px;
+  image-rendering: pixelated;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-void);
+}
+.inv-meta { flex: 1; min-width: 0; }
+.inv-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-bright);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.inv-group-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: .1em;
+}
+.inv-score-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.inv-score {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  color: var(--neon-gold);
+  text-shadow: 0 0 10px rgba(249,203,64,.3);
+  line-height: 1;
+}
+.inv-signal {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 3px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.inv-signal.bullish { background: rgba(0,255,157,.15); color: var(--bull-green); }
+.inv-signal.bearish { background: rgba(255,60,90,.15); color: var(--bear-red); }
+.inv-signal.neutral { background: rgba(90,107,133,.2); color: var(--text-dim); }
+.inv-comment {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ═══════════════ JUDGE PANEL · 51 灯评委席 ═══════════════ */
+.jury-board {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-md);
+}
+.jury-row-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.jury-seats {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+.seat {
+  position: relative;
+  aspect-ratio: 1 / 1.2;
+  padding: 8px 6px 10px;
+  background: var(--bg-tinted);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.seat:hover { transform: translateY(-2px); z-index: 10; box-shadow: var(--shadow-md); }
+.seat::before {
+  content: '';
+  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 5px;
+  border-radius: 0 0 6px 6px;
+}
+.seat.bullish { border-color: var(--bull-green); background: var(--bull-tint); box-shadow: 0 2px 8px rgba(5,150,105,.15); }
+.seat.bullish::before { background: var(--bull-green); }
+.seat.bearish { border-color: var(--bear-red); background: var(--bear-tint); box-shadow: 0 2px 8px rgba(220,38,38,.15); }
+.seat.bearish::before { background: var(--bear-red); }
+.seat.neutral { border-color: var(--border); opacity: .65; }
+.seat.neutral::before { background: var(--text-ghost); }
+.seat-avatar {
+  width: 38px; height: 38px;
+  image-rendering: pixelated;
+  border-radius: 4px;
+  background: #ffffff;
+}
+.seat-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.seat-score {
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+.seat.bullish .seat-score { color: var(--bull-green); }
+.seat.bearish .seat-score { color: var(--bear-red); }
+.seat.neutral .seat-score { color: var(--text-dim); }
+
+/* ═══════════════ CHAT ROOM · 群聊 ═══════════════ */
+.chat-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  max-height: 900px;
+  box-shadow: var(--shadow-md);
+}
+.chat-header {
+  padding: 18px 24px;
+  background: var(--bg-tinted);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  flex-wrap: wrap;
+}
+.chat-title { display: flex; align-items: center; gap: 14px; }
+.chat-room-icon {
+  width: 46px; height: 46px;
+  background: linear-gradient(135deg, var(--neon-cyan), var(--accent-blue));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 0 20px rgba(34,211,238,.3);
+}
+.chat-room-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text-bright);
+}
+.chat-room-meta { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
+.chat-room-meta strong { color: var(--neon-cyan); }
+.chat-filter-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.chat-tab {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 5px 11px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.chat-tab:hover { color: var(--text-bright); border-color: var(--neon-cyan); }
+.chat-tab.active {
+  background: var(--neon-cyan); color: #ffffff; border-color: var(--neon-cyan);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  background: var(--bg-rail);
+  display: flex; flex-direction: column; gap: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hot) transparent;
+}
+.chat-messages::-webkit-scrollbar { width: 8px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border-hot); border-radius: 4px; }
+.chat-messages::-webkit-scrollbar-track { background: transparent; }
+
+.chat-system {
+  text-align: center;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--text-ghost);
+  padding: 8px;
+  letter-spacing: .1em;
+}
+
+.chat-msg {
+  display: flex; gap: 12px;
+  max-width: 680px;
+}
+.chat-msg .msg-avatar {
+  width: 44px; height: 44px;
+  image-rendering: pixelated;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border: 1px solid var(--border);
+}
+.chat-msg .msg-body { flex: 1; min-width: 0; }
+.chat-msg .msg-meta {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+.chat-msg .msg-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  color: var(--text-bright);
+  font-size: 13px;
+}
+.chat-msg .msg-group-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--bg-tinted);
+  color: var(--text-dim);
+  letter-spacing: .1em;
+  border: 1px solid var(--border);
+}
+.chat-msg .msg-score-badge {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  letter-spacing: .05em;
+}
+.chat-msg.bullish .msg-score-badge { background: var(--bull-green); color: var(--bg-void); }
+.chat-msg.bearish .msg-score-badge { background: var(--bear-red); color: var(--text-bright); }
+.chat-msg.neutral .msg-score-badge { background: var(--text-ghost); color: var(--text-main); }
+.chat-msg .msg-signal-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+}
+.chat-msg.bullish .msg-signal-dot { background: var(--bull-green); box-shadow: 0 0 6px var(--bull-green); }
+.chat-msg.bearish .msg-signal-dot { background: var(--bear-red); box-shadow: 0 0 6px var(--bear-red); }
+.chat-msg.neutral .msg-signal-dot { background: var(--text-ghost); }
+
+.chat-msg .msg-bubble {
+  padding: 12px 16px;
+  border-radius: 4px 14px 14px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-main);
+  border: 1px solid;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+.chat-msg.bullish .msg-bubble { background: var(--bull-tint); border-color: var(--bull-green); }
+.chat-msg.bearish .msg-bubble { background: var(--bear-tint); border-color: var(--bear-red); }
+.chat-msg.neutral .msg-bubble { background: #ffffff; border-color: var(--border); }
+
+.chat-msg .msg-reasoning {
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+.chat-msg .msg-verdict {
+  display: inline-block;
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  padding: 2px 6px;
+  margin-top: 4px;
+  border-radius: 3px;
+  background: rgba(255,255,255,.06);
+  color: var(--text-dim);
+  letter-spacing: .05em;
+}
+.chat-msg .msg-confidence {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+}
+.chat-msg .msg-comment {
+  margin-top: 8px;
+  padding-left: 10px;
+  border-left: 2px solid var(--border);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--text-mid);
+}
+.chat-msg .msg-details {
+  margin-top: 10px;
+  font-size: 11px;
+}
+.chat-msg .msg-details summary {
+  cursor: pointer;
+  color: var(--neon-cyan);
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  padding: 4px 0;
+  user-select: none;
+}
+.chat-msg .msg-details summary:hover { color: var(--neon-gold); }
+.chat-msg .msg-details[open] summary { margin-bottom: 6px; }
+.conc-content {
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.conc-block { margin-bottom: 8px; }
+.conc-block:last-child { margin-bottom: 0; }
+.conc-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+  letter-spacing: .1em;
+}
+.conc-block ul { margin-left: 16px; color: var(--text-main); font-size: 11px; line-height: 1.5; }
+.conc-block li { margin-bottom: 2px; }
+.conc-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 11px; }
+.conc-row strong { color: var(--neon-gold); }
+
+/* Highlight target message after seat click */
+.chat-msg.flash-highlight {
+  animation: flashRing 1.6s ease;
+}
+@keyframes flashRing {
+  0% { box-shadow: 0 0 0 4px var(--neon-cyan); border-radius: 12px; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* Expand-all button */
+.chat-actions {
+  display: flex; gap: 8px; margin-bottom: 12px;
+}
+.chat-action-btn {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  padding: 6px 12px;
+  background: var(--bg-tinted);
+  border: 1px solid var(--border);
+  color: var(--text-mid);
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.chat-action-btn:hover { color: var(--neon-cyan); border-color: var(--neon-cyan); }
+
+.chat-footer {
+  padding: 14px 24px;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.chat-footer-avatar {
+  font-family: 'Fira Sans', serif;
+  font-size: 22px;
+  width: 34px; height: 34px;
+  background: var(--bg-void);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.chat-footer-text { font-size: 12px; color: var(--text-dim); font-family: 'Fira Code', monospace; }
+
+/* ═══════════════ FRIENDLY TRIO · 友好层 ═══════════════ */
+.friendly-trio {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin: 40px 0 30px;
+}
+.friendly-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.friendly-card.scenario { background: linear-gradient(135deg, var(--gold-tint), #fff); border-color: var(--neon-gold); }
+.friendly-card.similar { background: linear-gradient(135deg, var(--cyan-tint), #fff); border-color: var(--neon-cyan); }
+.friendly-card.exit { background: linear-gradient(135deg, var(--bear-tint), #fff); border-color: var(--bear-red); }
+.friendly-card .fc-icon { font-size: 32px; margin-bottom: 6px; }
+.friendly-card .fc-title {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--text-bright);
+  margin-bottom: 14px;
+}
+.friendly-card .fc-body {
+  font-size: 13px;
+  color: var(--text-main);
+  line-height: 1.65;
+}
+.friendly-card .fc-body strong { color: var(--text-bright); }
+
+.scenario-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px dashed var(--border);
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+}
+.scenario-row:first-of-type { border-top: none; padding-top: 2px; }
+.scenario-row .label { flex: 1; color: var(--text-mid); }
+.scenario-row .val { font-weight: 700; font-family: 'Fira Code', monospace; }
+.scenario-row .val.up { color: var(--bull-green); }
+.scenario-row .val.down { color: var(--bear-red); }
+.scenario-row .val.flat { color: var(--text-mid); }
+
+.similar-stock-pill {
+  display: block;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  text-decoration: none;
+  color: var(--text-main);
+  transition: all .15s;
+}
+.similar-stock-pill:hover { border-color: var(--neon-cyan); transform: translateX(2px); }
+.similar-stock-pill .ss-name { font-family: 'Fira Sans'; font-weight: 700; font-size: 13px; color: var(--text-bright); }
+.similar-stock-pill .ss-meta { font-family: 'Fira Code'; font-size: 10px; color: var(--text-dim); }
+.similar-stock-pill .ss-reason { font-size: 11px; color: var(--text-mid); margin-top: 3px; }
+
+.exit-trigger-item {
+  padding: 8px 10px;
+  background: #ffffff;
+  border-left: 3px solid var(--bear-red);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+.exit-trigger-item::before { content: '⚠️ '; }
+
+@media (max-width: 1100px) {
+  .friendly-trio { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .friendly-trio { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════ FUND MANAGERS · 抄作业面板 ═══════════════ */
+.fund-mgr-section {
+  margin-bottom: 40px;
+}
+.fund-mgr-header {
+  padding: 16px 20px;
+  background: var(--gold-tint);
+  border: 1px solid var(--neon-gold);
+  border-radius: 12px;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+.fund-mgr-header strong { color: var(--neon-gold); }
+.fund-mgr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+/* ═══ v2.4 · 紧凑行列表（展开后排名 7+ 的基金显示） ═══ */
+.fund-compact-list {
+  margin-top: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  max-height: 600px;
+  overflow-y: auto;
+  background: var(--bg-card);
+}
+.fund-compact-head,
+.fund-compact-row {
+  display: grid;
+  grid-template-columns: 44px 40px minmax(0, 2fr) 96px 100px 32px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.fund-compact-head {
+  background: var(--bg-tinted);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.fund-compact-row { transition: background .15s ease; }
+.fund-compact-row:hover { background: var(--gold-tint); }
+.fund-compact-row:last-child { border-bottom: none; }
+.fc-rank {
+  width: 36px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+.fc-avatar {
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  image-rendering: pixelated;
+  background: #fff;
+  flex-shrink: 0;
+}
+.fc-avatar-ph {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 14px; font-weight: 800;
+  color: var(--neon-gold);
+  background: var(--gold-tint);
+}
+.fc-info { min-width: 0; overflow: hidden; }
+.fc-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700; font-size: 13px;
+  color: var(--text-bright);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fc-fund {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fc-return, .fc-rank-pct {
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+}
+.fc-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--neon-cyan);
+  font-size: 18px;
+  transition: all .15s ease;
+}
+.fc-link:hover { background: var(--gold-tint); color: var(--neon-gold); transform: translateX(2px); }
+.fund-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all .2s ease;
+}
+.fund-card:hover {
+  border-color: var(--neon-gold);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.fund-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+.fund-manager-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--text-bright);
+  display: flex; align-items: center; gap: 6px;
+}
+.fund-stars {
+  font-size: 11px;
+  letter-spacing: -2px;
+}
+.fund-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 12px;
+  color: var(--neon-cyan);
+  font-weight: 600;
+  margin-top: 2px;
+}
+.fund-meta {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.fund-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.fund-metric {
+  text-align: center;
+  padding: 10px 6px;
+  background: var(--bg-tinted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.fund-metric .fm-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-bottom: 3px;
+  letter-spacing: .05em;
+}
+.fund-metric .fm-value {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  color: var(--text-bright);
+  letter-spacing: -.02em;
+}
+.fund-nav-block {
+  padding: 10px;
+  background: var(--bg-tinted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.fund-link {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--neon-cyan);
+  color: #ffffff;
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+  letter-spacing: .1em;
+}
+.fund-link:hover {
+  background: var(--neon-gold);
+}
+
+/* ═══════════════ DEEP SCAN · 19 维卡片 ═══════════════ */
+.deep-scan { display: flex; flex-direction: column; gap: 24px; }
+.cat-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: var(--neon-cyan);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  background: var(--cyan-tint);
+  border-left: 4px solid var(--neon-cyan);
+  align-self: flex-start;
+  border-radius: 0 8px 8px 0;
+  font-weight: 700;
+}
+.dim-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.dim-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 22px 18px;
+  position: relative;
+  transition: all .2s ease;
+  box-shadow: var(--shadow-sm);
+}
+.dim-card:hover { border-color: var(--neon-cyan); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.dim-card .dim-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+.dim-card .dim-num {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: .15em;
+  margin-bottom: 2px;
+}
+.dim-card .dim-title {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text-bright);
+  letter-spacing: -.01em;
+}
+.dim-card .dim-en {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: .1em;
+}
+.dim-score {
+  display: flex; flex-direction: column; align-items: flex-end;
+  flex-shrink: 0;
+}
+.dim-score .num {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -.03em;
+}
+.dim-score .num.high { color: var(--bull-green); }
+.dim-score .num.mid  { color: var(--neon-gold); }
+.dim-score .num.low  { color: var(--bear-red); }
+.dim-score .num.na   { color: var(--text-dim); }
+.dim-score .stars { font-size: 9px; color: var(--neon-gold); margin-top: 2px; }
+.dim-bar {
+  height: 6px;
+  background: var(--bg-rail);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.dim-bar .fill { height: 100%; transition: width 1s ease; }
+.dim-bar .fill.high { background: var(--bull-green); }
+.dim-bar .fill.mid  { background: var(--neon-gold); }
+.dim-bar .fill.low  { background: var(--bear-red); }
+.dim-label {
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Specialized viz container inside dim card */
+.dim-viz {
+  margin: 14px 0;
+  padding: 16px;
+  background: var(--bg-tinted);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.dim-viz svg { display: block; max-width: 100%; height: auto; }
+
+/* KPI mini grid inside dim card */
+.dim-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.kpi {
+  padding: 8px 10px;
+  background: var(--bg-tinted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.kpi .k {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.kpi .v {
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  color: var(--text-bright);
+  font-weight: 600;
+}
+.kpi .v.up { color: var(--bull-green); }
+.kpi .v.down { color: var(--bear-red); }
+
+.dim-pass-fail { font-size: 12px; color: var(--text-mid); line-height: 1.7; margin-top: 10px; }
+.dim-pass-fail .pass { color: var(--bull-green); }
+.dim-pass-fail .fail { color: var(--bear-red); }
+.dim-pass-fail ul { list-style: none; padding-left: 0; }
+.dim-pass-fail li { padding: 2px 0; padding-left: 14px; position: relative; }
+.dim-pass-fail .pass li::before { content: '✓'; position: absolute; left: 0; color: var(--bull-green); }
+.dim-pass-fail .fail li::before { content: '✗'; position: absolute; left: 0; color: var(--bear-red); }
+
+.dim-source {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 10px;
+  color: var(--text-dim);
+  display: flex; align-items: center; gap: 6px;
+}
+.dim-source .badge {
+  padding: 2px 7px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-family: 'Fira Code', monospace;
+  font-weight: 600;
+}
+.dim-source .badge.live { color: var(--bull-green); border-color: var(--bull-green); background: var(--bull-tint); }
+.dim-source .badge.fallback { color: var(--warning-amber); border-color: var(--warning-amber); background: #fed7aa; }
+
+.dim-card details {
+  margin-top: 8px;
+  font-size: 11px;
+}
+.dim-card details summary {
+  cursor: pointer;
+  color: var(--neon-cyan);
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  letter-spacing: .15em;
+  padding: 4px 0;
+}
+.dim-card details summary:hover { color: var(--neon-gold); }
+.dim-card details pre {
+  margin-top: 6px;
+  padding: 10px;
+  background: var(--bg-rail);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--text-main);
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* ═══════════════ RISKS ═══════════════ */
+.risk-box {
+  padding: 28px;
+  background: var(--bear-tint);
+  border: 1px solid var(--bear-red);
+  border-left: 6px solid var(--bear-red);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+}
+.risk-box ul { list-style: none; }
+.risk-box li {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,60,90,.15);
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px;
+  color: var(--text-main);
+}
+.risk-box li:last-child { border-bottom: none; }
+.risk-box li::before {
+  content: '!'; flex-shrink: 0;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bear-red); color: var(--text-bright);
+  border-radius: 50%;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900; font-size: 13px;
+}
+
+/* ═══════════════ BUY ZONES ═══════════════ */
+.zones-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.zone {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+.zone::before {
+  content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 2px;
+  background: var(--neon-cyan);
+}
+.zone .zone-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  letter-spacing: .2em;
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.zone .zone-price {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 42px;
+  color: var(--neon-gold);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.zone .zone-rationale {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ═══════════════ FOOTER ═══════════════ */
+footer {
+  margin-top: 80px;
+  padding: 32px 0 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text-ghost);
+  font-size: 11px;
+  line-height: 1.7;
+}
+footer strong { color: var(--text-dim); }
+
+/* ═══════════════ O.o LOGO EYE ═══════════════ */
+.oo-eye {
+  display: inline-block;
+  font-family: 'Fira Sans', serif;
+  font-weight: 900;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px rgba(6,216,216,.5);
+  letter-spacing: .05em;
+}
+
+/* ═══════════════ HIDDEN SHARE-CARDS ═══════════════ */
+#share-card, #war-report {
+  position: absolute; left: -9999px; top: -9999px;
+  background: var(--bg-void);
+  font-family: 'Fira Code', 'Fira Sans', monospace;
+  color: var(--text-main);
+  overflow: hidden;
+}
+#share-card {
+  width: 1080px; height: 1920px;
+  padding: 90px 70px;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(6,216,216,.15), transparent 60%),
+    radial-gradient(ellipse 80% 40% at 85% 90%, rgba(180,108,255,.1), transparent 60%),
+    linear-gradient(180deg, var(--bg-void), var(--bg-deep));
+}
+#share-card .sc-topbar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 30px; border-bottom: 2px solid var(--neon-cyan); }
+#share-card .sc-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 30px; color: var(--text-bright);
+  letter-spacing: .15em;
+}
+#share-card .sc-brand em { color: var(--neon-cyan); font-style: normal; }
+#share-card .sc-badge { font-size: 22px; color: var(--text-dim); letter-spacing: .1em; }
+
+#share-card .sc-name {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 96px;
+  color: var(--text-bright);
+  letter-spacing: -.03em;
+  margin-top: 60px;
+  margin-bottom: 10px;
+}
+#share-card .sc-code-row { display: flex; align-items: baseline; gap: 24px; margin-bottom: 36px; }
+#share-card .sc-code { font-family: 'Fira Code', monospace; font-size: 30px; color: var(--text-dim); }
+#share-card .sc-price { font-family: 'Fira Code', monospace; font-size: 54px; color: var(--neon-gold); font-weight: 700; }
+#share-card .sc-change { font-size: 32px; padding: 8px 16px; border-radius: 8px; }
+#share-card .sc-change.up { background: rgba(0,255,157,.15); color: var(--bull-green); }
+#share-card .sc-change.down { background: rgba(255,60,90,.15); color: var(--bear-red); }
+
+#share-card .sc-score-box {
+  margin: 40px -20px;
+  padding: 60px;
+  background: linear-gradient(135deg, rgba(249,203,64,.12), rgba(6,216,216,.05));
+  border: 4px solid var(--neon-gold);
+  border-radius: 32px;
+  text-align: center;
+  box-shadow: 10px 10px 0 rgba(249,203,64,.4);
+}
+#share-card .sc-score-giant {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 900;
+  font-size: 260px;
+  line-height: .85;
+  color: var(--neon-gold);
+  text-shadow: 0 0 40px rgba(249,203,64,.5);
+  letter-spacing: -.06em;
+}
+#share-card .sc-score-unit { font-size: 48px; color: var(--text-dim); margin-left: 8px; }
+#share-card .sc-verdict {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  color: var(--text-bright);
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid rgba(249,203,64,.4);
+}
+
+#share-card .sc-section-title {
+  font-family: 'Fira Code', monospace;
+  font-size: 22px;
+  color: var(--neon-cyan);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  margin: 50px 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+#share-card .sc-votes { display: flex; flex-direction: column; gap: 14px; }
+#share-card .sc-vote-row { display: flex; align-items: center; gap: 20px; font-size: 28px; color: var(--text-main); }
+#share-card .sc-vote-row .lbl { width: 160px; }
+#share-card .sc-vote-row .bar { flex: 1; height: 28px; background: var(--bg-card); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+#share-card .sc-vote-row .fill { height: 100%; }
+#share-card .sc-vote-row .cnt { width: 120px; text-align: right; font-family: 'Fira Code', monospace; font-weight: 700; color: var(--text-bright); }
+
+#share-card .sc-best { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+#share-card .sc-bestcell {
+  padding: 28px;
+  background: var(--bg-card);
+  border: 2px solid var(--bull-green);
+  border-radius: 16px;
+  text-align: center;
+}
+#share-card .sc-bestcell img { width: 120px; height: 120px; image-rendering: pixelated; border-radius: 8px; border: 2px solid var(--border); }
+#share-card .sc-bestcell .n { font-size: 28px; margin-top: 12px; color: var(--text-bright); font-weight: 600; }
+#share-card .sc-bestcell .s { font-size: 48px; color: var(--neon-gold); font-weight: 900; }
+
+#share-card .sc-punchline-box {
+  margin: 50px 0 40px;
+  padding: 50px;
+  background: var(--bg-void);
+  border: 3px solid var(--neon-gold);
+  border-left: 16px solid var(--neon-gold);
+  border-radius: 12px;
+  box-shadow: 12px 12px 0 rgba(249,203,64,.4);
+  position: relative;
+}
+#share-card .sc-punchline-box .lbl {
+  position: absolute; top: -18px; left: 40px;
+  background: var(--neon-gold); color: var(--bg-void);
+  padding: 6px 20px;
+  font-family: 'Fira Code', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .25em;
+}
+#share-card .sc-punchline-box .txt {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  color: var(--text-bright);
+  line-height: 1.5;
+}
+
+#share-card .sc-trap {
+  font-size: 32px;
+  padding: 28px;
+  border-radius: 12px;
+  border: 2px solid;
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 40px;
+}
+#share-card .sc-trap.green { background: rgba(0,255,157,.06); border-color: var(--bull-green); color: var(--bull-green); }
+#share-card .sc-trap.yellow { background: rgba(249,203,64,.06); border-color: var(--neon-gold); color: var(--neon-gold); }
+#share-card .sc-trap.orange { background: rgba(255,176,32,.06); border-color: var(--warning-amber); color: var(--warning-amber); }
+#share-card .sc-trap.red { background: rgba(255,60,90,.06); border-color: var(--bear-red); color: var(--bear-red); }
+
+#share-card .sc-footer {
+  position: absolute; bottom: 70px; left: 70px; right: 70px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-top: 30px;
+  border-top: 1px solid var(--border);
+  font-size: 22px; color: var(--text-dim);
+}
+#share-card .sc-footer .oo-big {
+  font-family: 'Fira Sans', serif;
+  font-size: 64px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 20px rgba(6,216,216,.5);
+  letter-spacing: .08em;
+  line-height: 1;
+}
+
+/* WAR REPORT 1920x1080 */
+#war-report { width: 1920px; height: 1080px; padding: 70px 90px; }
+#war-report .wr-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 24px; border-bottom: 2px solid var(--neon-cyan); margin-bottom: 40px; }
+#war-report .wr-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 28px; letter-spacing: .15em; color: var(--text-bright); }
+#war-report .wr-brand em { color: var(--neon-cyan); font-style: normal; }
+#war-report .wr-date { font-size: 20px; color: var(--text-dim); }
+#war-report .wr-body { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; height: calc(100% - 180px); }
+#war-report .wr-left { display: flex; flex-direction: column; justify-content: space-between; }
+#war-report .wr-name { font-family: 'Fira Sans', sans-serif; font-weight: 900; font-size: 88px; color: var(--text-bright); letter-spacing: -.03em; line-height: 1; }
+#war-report .wr-code { font-family: 'Fira Code', monospace; font-size: 26px; color: var(--text-dim); margin-top: 8px; }
+#war-report .wr-one { color: var(--text-main); font-size: 22px; margin-top: 14px; }
+#war-report .wr-punch {
+  padding: 28px 32px;
+  background: var(--bg-void);
+  border: 3px solid var(--neon-gold);
+  border-left: 12px solid var(--neon-gold);
+  border-radius: 8px;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--text-bright);
+  line-height: 1.4;
+  box-shadow: 8px 8px 0 rgba(249,203,64,.4);
+}
+#war-report .wr-fight { display: flex; gap: 24px; align-items: center; }
+#war-report .wr-fi { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+#war-report .wr-fi img { width: 96px; height: 96px; image-rendering: pixelated; border: 2px solid; border-radius: 8px; padding: 4px; background: var(--bg-void); }
+#war-report .wr-fi.bull img { border-color: var(--bull-green); }
+#war-report .wr-fi.bear img { border-color: var(--bear-red); }
+#war-report .wr-fi .fn { font-family: 'Fira Sans', sans-serif; font-weight: 700; font-size: 20px; color: var(--text-bright); }
+#war-report .wr-fi .fs { font-family: 'Fira Code', monospace; font-size: 22px; font-weight: 700; }
+#war-report .wr-fi.bull .fs { color: var(--bull-green); }
+#war-report .wr-fi.bear .fs { color: var(--bear-red); }
+#war-report .wr-vs { font-family: 'Fira Sans', sans-serif; font-weight: 900; font-size: 52px; color: var(--neon-gold); transform: skewX(-8deg); }
+#war-report .wr-right {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+  padding: 40px;
+  background: var(--bg-card);
+  border: 4px solid var(--neon-gold);
+  border-radius: 24px;
+  box-shadow: 12px 12px 0 rgba(249,203,64,.4);
+}
+#war-report .wr-score-label { font-family: 'Fira Code', monospace; font-size: 16px; letter-spacing: .25em; color: var(--neon-gold); text-transform: uppercase; }
+#war-report .wr-score { font-family: 'Fira Sans', sans-serif; font-weight: 900; font-size: 280px; line-height: .8; color: var(--neon-gold); text-shadow: 0 0 40px rgba(249,203,64,.5); letter-spacing: -.06em; }
+#war-report .wr-verdict { font-family: 'Fira Sans', sans-serif; font-weight: 700; font-size: 38px; color: var(--text-bright); text-align: center; }
+#war-report .wr-trap { font-size: 22px; color: var(--text-dim); }
+#war-report .wr-footer { grid-column: 1/-1; display: flex; justify-content: space-between; color: var(--text-dim); font-size: 18px; padding-top: 30px; border-top: 1px solid var(--border); }
+#war-report .wr-oo { font-family: 'Fira Sans', serif; font-size: 42px; color: var(--neon-cyan); text-shadow: 0 0 15px rgba(6,216,216,.5); letter-spacing: .08em; }
+
+/* ═══════════════ BOOT SEQUENCE OVERLAY ═══════════════ */
+.boot-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--bg-deep);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 24px;
+  transition: opacity .6s ease;
+}
+.boot-overlay.done { opacity: 0; pointer-events: none; }
+.boot-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 32px;
+  letter-spacing: .25em;
+  color: var(--text-bright);
+}
+.boot-logo em { color: var(--neon-cyan); font-style: normal; text-shadow: 0 0 20px rgba(6,216,216,.6); }
+.boot-eye {
+  font-family: 'Fira Sans', serif;
+  font-size: 96px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 40px rgba(6,216,216,.6);
+  animation: blink 1.4s ease-in-out infinite;
+  letter-spacing: .1em;
+}
+@keyframes blink {
+  0%, 90%, 100% { opacity: 1; }
+  93% { opacity: 0.2; }
+  96% { opacity: 1; }
+}
+.boot-bar {
+  width: 320px; height: 4px;
+  background: var(--bg-rail);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.boot-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-gold));
+  animation: bootFill 1.6s cubic-bezier(.2,.7,.3,1) forwards;
+}
+@keyframes bootFill { to { width: 100%; } }
+.boot-status {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════ ENTRANCE ANIMATIONS ═══════════════ */
+.score-giant {
+  /* counts up from 0 via JS */
+  font-variant-numeric: tabular-nums;
+}
+.seat {
+  opacity: 0;
+  transform: scale(.92);
+  animation: seatPop .35s cubic-bezier(.2,1.4,.4,1) forwards;
+}
+@keyframes seatPop {
+  to { opacity: 1; transform: scale(1); }
+}
+.fighter {
+  opacity: 0; animation: fadeUp .6s cubic-bezier(.2,.8,.3,1) forwards;
+  animation-delay: 1.2s;
+}
+.fighter.bull { transform: translateX(-30px); }
+.fighter.bear { transform: translateX(30px); }
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateX(0); }
+}
+.punchline {
+  opacity: 0; animation: fadeUp .6s cubic-bezier(.2,.8,.3,1) forwards;
+  animation-delay: 1.6s;
+}
+.chat-msg {
+  /* Start visible by default so they show even if JS animation hasn't run yet */
+  opacity: 1;
+  animation: msgIn .4s ease both;
+}
+.chat-msg.finalize { opacity: 1 !important; transform: none !important; animation: none !important; }
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seat, .fighter, .punchline, .chat-msg, .boot-fill { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* ═══════════════ RESPONSIVE · TABLET ═══════════════ */
+@media (max-width: 1100px) {
+  .container { padding: 24px 28px 60px; max-width: 100%; }
+  .bento-hero { grid-template-columns: 1fr; }
+  .bento.name-card { grid-row: auto; }
+  .dashboard-bento { grid-template-columns: 1fr 1fr; }
+  .dashboard-bento .data-cell:nth-child(6) { grid-column: span 2; }
+  .core-conclusion, .battle-plan { grid-column: 1 / -1; }
+  .stock-name { font-size: 56px; }
+  .score-giant { font-size: 130px; }
+  .fighter .confidence { font-size: 80px; }
+  .jury-seats { grid-template-columns: repeat(8, 1fr); }
+  .investor-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}
+
+/* ═══════════════ RESPONSIVE · MOBILE ═══════════════ */
+@media (max-width: 720px) {
+  body { font-size: 13px; }
+  .container { padding: 14px 12px 40px; }
+
+  /* topbar collapses */
+  .topbar { padding: 10px 14px; gap: 10px; flex-wrap: wrap; border-radius: 10px; margin-bottom: 16px; }
+  .topbar .left { gap: 10px; flex: 1; min-width: 0; }
+  .topbar .brand { font-size: 12px; letter-spacing: .12em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .brand span { display: none; }
+  .topbar .status { font-size: 9px; gap: 6px; }
+  .topbar .status span:not(.pulse) { display: none; }
+
+  /* hero stacks */
+  .bento-hero { grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
+  .bento { padding: 18px; border-radius: 14px; }
+  .bento.name-card { padding: 22px 18px; box-shadow: none; }
+  .ticker-label { font-size: 9px; }
+  .stock-name { font-size: 38px; line-height: 1.05; letter-spacing: -.02em; margin-bottom: 6px; }
+  .stock-code { font-size: 13px; margin-bottom: 16px; }
+  .one-liner { font-size: 13px; padding: 12px 14px; margin-bottom: 18px; border-left-width: 3px; }
+  .price-row { gap: 12px; margin-bottom: 14px; }
+  .price { font-size: 38px; }
+  .change { font-size: 16px; padding: 4px 10px; }
+  .metric-chips { gap: 6px; }
+  .chip { font-size: 10px; padding: 4px 10px; }
+
+  /* score card — STILL HUGE on mobile, just slightly smaller */
+  .bento.score-card { min-height: 200px; padding: 22px; border-width: 2px; box-shadow: 4px 4px 0 rgba(6,216,216,.6), 0 0 18px rgba(249,203,64,.2); }
+  .score-giant { font-size: 110px; }
+  .score-giant::after { font-size: 18px; right: 18%; }
+  .score-verdict { font-size: 22px; padding-top: 8px; }
+
+  .bento.safety-card { padding: 14px 16px; gap: 12px; }
+  .safety-icon { font-size: 28px; }
+  .safety-text strong { font-size: 14px; }
+  .safety-text span { font-size: 10px; line-height: 1.4; }
+
+  /* section headers */
+  .section-head { margin: 36px 0 14px; gap: 10px; }
+  .section-tag { font-size: 9px; padding: 4px 8px; }
+  .section-title { font-size: 22px; }
+
+  /* 4-section dashboard collapses */
+  .dashboard-bento { grid-template-columns: 1fr; gap: 10px; }
+  .core-conclusion { padding: 22px 18px; }
+  .core-conclusion .text { font-size: 17px; line-height: 1.55; }
+  .core-conclusion::before { font-size: 100px; top: -16px; left: 12px; }
+  .data-cell { padding: 14px 16px; }
+  .data-cell .icon { font-size: 16px; top: 10px; right: 12px; }
+  .data-cell .key { font-size: 9px; }
+  .data-cell .value { font-size: 13px; }
+  .battle-plan {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 16px 18px;
+  }
+  .battle-plan .plan-label {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-bottom: 1px solid rgba(249,203,64,.3);
+    padding: 0 0 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* ─── DIVIDE / ARENA · 移动端拳击擂台垂直排列 ─── */
+  .divide-section { padding: 28px 18px; border-radius: 18px; }
+  .divide-section::before { font-size: 56px; top: 16px; }
+  .divide-header h2 { font-size: 22px; }
+  .divide-header .tag { font-size: 9px; padding: 3px 12px; }
+  .arena { grid-template-columns: 1fr; gap: 14px; }
+  .fighter { padding: 22px 18px; border-width: 2px; }
+  .fighter .avatar-box { width: 96px; height: 96px; }
+  .fighter .fighter-name { font-size: 20px; }
+  .fighter .confidence { font-size: 72px; }
+  .fighter .quote { font-size: 12px; padding: 12px; }
+  .vs-bolt { font-size: 60px; padding: 8px 0; transform: none; }
+  .vs-bolt .sub { font-size: 9px; transform: none; }
+  .punchline { padding: 22px 20px 22px 26px; font-size: 18px; line-height: 1.5; border-left-width: 8px; }
+  .punchline::before { font-size: 9px; padding: 2px 8px; left: 18px; }
+
+  /* jury seats — mobile uses 5 columns */
+  .jury-board { padding: 18px 14px; }
+  .jury-row-label { font-size: 9px; margin-bottom: 14px; }
+  .jury-seats { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .seat { padding: 6px 4px 8px; border-radius: 8px; }
+  .seat-avatar { width: 30px; height: 30px; }
+  .seat-name { font-size: 9px; }
+  .seat-score { font-size: 11px; }
+
+  /* stat tiles 2x2 on mobile */
+  .panel-stats { gap: 8px; }
+  .stat-tile { min-width: 0; flex: 1 1 calc(50% - 4px); padding: 12px 14px; }
+  .stat-tile .num { font-size: 28px; }
+  .stat-tile .label { font-size: 9px; }
+
+  /* ─── CHAT ROOM ─── */
+  .chat-container { border-radius: 14px; max-height: none; }
+  .chat-header { padding: 14px 16px; gap: 10px; }
+  .chat-room-icon { width: 38px; height: 38px; font-size: 18px; border-radius: 10px; }
+  .chat-room-name { font-size: 14px; }
+  .chat-room-meta { font-size: 10px; }
+  .chat-filter-tabs { gap: 3px; width: 100%; overflow-x: auto; padding-bottom: 4px; }
+  .chat-filter-tabs::-webkit-scrollbar { display: none; }
+  .chat-tab { font-size: 9px; padding: 4px 9px; white-space: nowrap; flex-shrink: 0; }
+  .chat-actions { padding: 10px 16px 0 !important; gap: 6px; flex-wrap: wrap; }
+  .chat-action-btn { font-size: 9px; padding: 5px 10px; }
+  .chat-messages { padding: 16px 14px; gap: 14px; max-height: none; }
+  .chat-system { font-size: 10px; padding: 6px 0; }
+  .chat-msg { gap: 10px; max-width: 100%; }
+  .chat-msg .msg-avatar { width: 36px; height: 36px; }
+  .chat-msg .msg-name { font-size: 12px; }
+  .chat-msg .msg-group-tag { font-size: 8px; padding: 1px 5px; }
+  .chat-msg .msg-score-badge { font-size: 9px; padding: 1px 5px; }
+  .chat-msg .msg-confidence { font-size: 8px; }
+  .chat-msg .msg-bubble { padding: 10px 13px; font-size: 12px; border-radius: 4px 12px 12px 12px; }
+  .chat-msg .msg-comment { font-size: 11px; padding-left: 8px; }
+  .chat-msg .msg-verdict { font-size: 9px; }
+  .chat-msg .msg-details summary { font-size: 9px; }
+  .conc-content { padding: 8px 10px; }
+  .conc-block ul { font-size: 10px; }
+  .chat-footer { padding: 10px 14px; }
+  .chat-footer-text { font-size: 10px; }
+
+  /* deep scan */
+  .cat-label { font-size: 9px; padding: 5px 10px; }
+  .dim-row { grid-template-columns: 1fr; gap: 10px; }
+  .dim-card { padding: 14px 16px; border-radius: 12px; }
+  .dim-card .dim-title { font-size: 14px; }
+  .dim-score .num { font-size: 24px; }
+  .dim-kpis { gap: 5px; }
+  .kpi { padding: 6px 8px; }
+  .kpi .v { font-size: 11px; }
+
+  /* risks */
+  .risk-box { padding: 18px 16px; border-radius: 12px; }
+  .risk-box li { padding: 10px 0; font-size: 12px; gap: 8px; }
+  .risk-box li::before { width: 18px; height: 18px; font-size: 11px; }
+
+  /* zones */
+  .zones-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .zone { padding: 18px 16px; border-radius: 12px; }
+  .zone .zone-label { font-size: 9px; }
+  .zone .zone-price { font-size: 30px; }
+  .zone .zone-rationale { font-size: 10px; }
+
+  /* footer */
+  footer { font-size: 10px; padding: 24px 0 8px; }
+
+  /* boot overlay smaller */
+  .boot-logo { font-size: 18px; letter-spacing: .15em; padding: 0 20px; text-align: center; }
+  .boot-eye { font-size: 64px; }
+  .boot-bar { width: 240px; }
+  .boot-status { font-size: 9px; padding: 0 20px; text-align: center; }
+}
+
+/* ═══════════════ RESPONSIVE · SMALL PHONE (≤ 380px) ═══════════════ */
+@media (max-width: 380px) {
+  .container { padding: 12px 10px 32px; }
+  .stock-name { font-size: 32px; }
+  .price { font-size: 32px; }
+  .score-giant { font-size: 92px; }
+  .core-conclusion .text { font-size: 16px; }
+  .fighter .confidence { font-size: 64px; }
+  .jury-seats { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ─── v3.3 · Segmental Revenue Build-Up CSS (from v2.10 feature) ─── */
+.segmental-section {
+  background: linear-gradient(135deg, rgba(8,145,178,0.04) 0%, rgba(217,119,6,0.04) 100%);
+  border: 1px solid rgba(8,145,178,0.15);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 32px 0;
+}
+.seg-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(8,145,178,0.12);
+}
+.seg-section-title .section-tag {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #0891b2;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.seg-section-title h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #0f172a;
+  font-weight: 700;
+}
+.seg-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.seg-thesis {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.6);
+  border-left: 3px solid #0891b2;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.seg-thesis .lbl {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #0891b2;
+  font-weight: 700;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+.seg-thesis .txt { font-size: 14px; color: #1e293b; line-height: 1.55; }
+
+.seg-charts-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 240px) 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+.seg-chart-cell {
+  background: rgba(255,255,255,0.5);
+  border-radius: 8px;
+  padding: 14px;
+}
+.seg-chart-title {
+  font-size: 11px;
+  color: #64748b;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.seg-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+.seg-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.seg-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.seg-icon { font-size: 18px; }
+.seg-name { font-size: 15px; font-weight: 700; color: #0f172a; }
+.seg-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.seg-share {
+  margin-left: auto;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+}
+.seg-rev {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+.seg-rev strong {
+  font-size: 18px;
+  color: #0f172a;
+  font-weight: 700;
+}
+.seg-drivers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.seg-driver {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  color: #334155;
+}
+.seg-driver.muted { color: #94a3b8; font-style: italic; }
+.seg-cagr {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+.cagr-cell {
+  text-align: center;
+  padding: 8px 4px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cagr-cell .lbl { font-size: 9px; letter-spacing: 1px; font-weight: 700; opacity: 0.75; }
+.cagr-cell .val { font-size: 15px; font-weight: 700; }
+.cagr-cell .end { font-size: 10px; opacity: 0.7; margin-top: 2px; }
+.cagr-cell.bull { background: rgba(5,150,105,0.08); color: #059669; }
+.cagr-cell.base { background: rgba(217,119,6,0.08); color: #d97706; }
+.cagr-cell.bear { background: rgba(220,38,38,0.08); color: #dc2626; }
+
+/* v2.10+ · 卡片新富字段 */
+.seg-metrics-row {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;
+  padding: 6px 10px; background: #f8fafc; border-radius: 4px;
+}
+.seg-metric { font-size: 11px; color: #64748b; }
+.seg-metric strong { font-size: 13px; }
+.seg-metric small { font-size: 10px; opacity: 0.85; }
+
+.seg-spark {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 10px; padding: 4px 6px;
+  background: rgba(241,245,249,0.5); border-radius: 4px;
+}
+.spark-lbl { font-size: 9px; color: #94a3b8; white-space: nowrap; }
+.spark-val { font-size: 11px; color: #0f172a; font-weight: 700; margin-left: auto; }
+
+/* v2.10+ · 3×3 projection 表 */
+.seg-projection-table-wrap {
+  background: rgba(255,255,255,0.6);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.seg-projection-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  margin-top: 8px;
+}
+.seg-projection-table th, .seg-projection-table td {
+  padding: 6px 8px;
+  text-align: right;
+  border-bottom: 1px solid #e2e8f0;
+}
+.seg-projection-table th.bull { background: rgba(5,150,105,0.12); color: #059669; font-weight: 700; }
+.seg-projection-table th.base { background: rgba(217,119,6,0.12); color: #d97706; font-weight: 700; }
+.seg-projection-table th.bear { background: rgba(220,38,38,0.12); color: #dc2626; font-weight: 700; }
+.seg-projection-table td.bull { background: rgba(5,150,105,0.04); color: #059669; }
+.seg-projection-table td.base { background: rgba(217,119,6,0.04); color: #d97706; }
+.seg-projection-table td.bear { background: rgba(220,38,38,0.04); color: #dc2626; }
+.seg-tbl-name { text-align: left !important; color: #0f172a; font-weight: 600; }
+.seg-tbl-cur { color: #64748b; font-weight: 600; }
+.seg-tbl-total { background: rgba(8,145,178,0.05); border-top: 2px solid #0891b2; }
+.seg-note {
+  margin-top: 10px;
+  font-size: 11px;
+  color: #64748b;
+  font-style: italic;
+  padding: 6px 10px;
+  background: rgba(251,191,36,0.08);
+  border-radius: 4px;
+}
+.seg-warnings {
+  margin-top: 14px;
+  font-size: 11px;
+  color: #d97706;
+  padding: 8px 12px;
+  background: rgba(251,191,36,0.1);
+  border-radius: 4px;
+  border-left: 3px solid #d97706;
+}
+.seg-source {
+  margin-top: 10px;
+  font-size: 10px;
+  color: #94a3b8;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+@media (max-width: 800px) {
+  .seg-charts-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── BOOT OVERLAY ─── -->
+<div class="boot-overlay" id="boot-overlay">
+  <div class="boot-logo">FloatFu-true <em>· 游资 SKILLS</em></div>
+  <div class="boot-eye">O.o</div>
+  <div class="boot-bar"><div class="boot-fill"></div></div>
+  <div class="boot-status">SCANNING · INITIALIZING JURY · LOADING ARENA</div>
+</div>
+
+<div class="container">
+
+  <!-- ─── TOP BAR ─── -->
+  <div class="topbar">
+    <div class="left">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <div class="brand">FloatFu-true <span>游资 SKILLS</span></div>
+    </div>
+    <div class="status">
+      <span class="pulse"></span>
+      <span class="market-badge {{MARKET_STATUS_CLASS}}">{{MARKET_STATUS}}</span>
+      <span>· DATA @ {{DATA_FETCHED_AT}} · UZI v{{PLUGIN_VERSION}}</span>
+      <button class="theme-toggle" id="theme-toggle" title="切换暗色 / 浅色主题" aria-label="切换主题">🌙</button>
+    </div>
+  </div>
+
+  <!-- v3.6.0 · sticky TOC rail · 左侧导航 + scroll spy -->
+  <nav class="toc-rail" id="toc-rail" aria-label="报告章节导航">
+    <button class="toc-toggle" id="toc-toggle" type="button" aria-label="折叠导航栏" aria-expanded="true" title="折叠 / 展开导航">◀</button>
+    <a href="#section-core" class="toc-item"><span class="toc-num">01</span>核心结论</a>
+    <a href="#section-clash" class="toc-item"><span class="toc-num">02</span>世纪分歧</a>
+    <a href="#section-jury" class="toc-item"><span class="toc-num">03</span>评委打分板</a>
+    <a href="#section-chat" class="toc-item"><span class="toc-num">04</span>大佬群聊</a>
+    <a href="#section-scan" class="toc-item"><span class="toc-num">05</span>22 维 Deep Scan</a>
+    <a href="#section-modeling" class="toc-item"><span class="toc-num">06</span>机构建模</a>
+    <a href="#section-risks" class="toc-item"><span class="toc-num">07</span>风险清单</a>
+    <a href="#section-zones" class="toc-item"><span class="toc-num">08</span>买入区间</a>
+  </nav>
+
+  <!-- ─── DATA QUALITY BANNER · v2.3 (only rendered when _data_gaps.json exists) ─── -->
+  <!-- INJECT_DATA_GAP_BANNER -->
+
+  <!-- ─── STYLE CHIP · v2.7 (动态加权风格识别说明) ─── -->
+  <!-- INJECT_STYLE_CHIP -->
+
+  <!-- ─── BENTO HERO ─── -->
+  <div class="bento-hero">
+
+    <!-- name + price + one-liner -->
+    <div class="bento name-card">
+      <div class="ticker-label">// SUBJECT</div>
+      <h1 class="stock-name">{{NAME}}</h1>
+      <div class="stock-code">{{TICKER}} · {{INDUSTRY}}</div>
+      <div class="one-liner">{{ONE_LINER}}</div>
+      <div class="price-row">
+        <div class="price">¥{{PRICE}}</div>
+        <div class="change {{CHANGE_DIR}}">{{CHANGE_PCT}}</div>
+      </div>
+      <div class="metric-chips">
+        <div class="chip"><strong>MCAP</strong>{{MCAP}}</div>
+        <div class="chip"><strong>PE</strong>{{PE}}</div>
+        <div class="chip"><strong>PB</strong>{{PB}}</div>
+      </div>
+    </div>
+
+    <!-- BRUTALIST SCORE -->
+    <div class="bento score-card">
+      <div class="score-label">ALPHA SCORE</div>
+      <div class="score-giant">{{OVERALL_SCORE_INT}}</div>
+      <div class="score-verdict">{{VERDICT_LABEL}}</div>
+    </div>
+
+    <!-- SAFETY -->
+    <div class="bento safety-card {{TRAP_COLOR}}">
+      <div class="safety-icon">{{TRAP_EMOJI}}</div>
+      <div class="safety-text">
+        <strong>杀猪盘体检 · {{TRAP_LEVEL}}</strong>
+        <span>{{TRAP_RECOMMENDATION}}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── DASHBOARD 4-SECTION ─── -->
+  <div class="section-head" id="section-core">
+    <div class="section-tag">01 / CORE</div>
+    <h2 class="section-title">核心结论</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="dashboard-bento">
+    <div class="core-conclusion">
+      <div class="label">// ONE-SHOT CONCLUSION</div>
+      <div class="text">{{CORE_CONCLUSION}}</div>
+    </div>
+
+    <div class="data-cell"><div class="icon">📈</div><div class="key">趋势 TREND</div><div class="value">{{DP_TREND}}</div></div>
+    <div class="data-cell"><div class="icon">💰</div><div class="key">价位 PRICE</div><div class="value">{{DP_PRICE}}</div></div>
+    <div class="data-cell"><div class="icon">📊</div><div class="key">量能 VOLUME</div><div class="value">{{DP_VOLUME}}</div></div>
+    <div class="data-cell"><div class="icon">🎯</div><div class="key">筹码 CHIPS</div><div class="value">{{DP_CHIPS}}</div></div>
+    <div class="data-cell" style="grid-column: span 2;"><div class="icon">📰</div><div class="key">新闻 NEWS</div><div class="value">{{INTEL_NEWS}}</div></div>
+    <div class="data-cell"><div class="icon">⚠️</div><div class="key">风险 RISKS</div><div class="value">{{INTEL_RISKS}}</div></div>
+    <div class="data-cell"><div class="icon">🚀</div><div class="key">催化 CATALYSTS</div><div class="value">{{INTEL_CATALYSTS}}</div></div>
+
+    <div class="battle-plan">
+      <div class="plan-label">BATTLE PLAN</div>
+      <div class="plan-field"><span class="k">Entry</span><span class="v">{{BP_ENTRY}}</span></div>
+      <div class="plan-field"><span class="k">Position</span><span class="v">{{BP_POSITION}}</span></div>
+      <div class="plan-field"><span class="k">Stop</span><span class="v">{{BP_STOP}}</span></div>
+      <div class="plan-field"><span class="k">Target</span><span class="v">{{BP_TARGET}}</span></div>
+    </div>
+  </div>
+
+  <!-- ─── THE GREAT DIVIDE ─── -->
+  <div class="section-head" id="section-clash">
+    <div class="section-tag">02 / CLASH</div>
+    <h2 class="section-title">世纪分歧</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="divide-section">
+    <div class="divide-header">
+      <div class="tag">THE GREAT DIVIDE</div>
+      <h2>最看多 VS 最看空</h2>
+      <div class="round-info">⚡ <strong>3 ROUNDS</strong> · 隔空辩论 · 最后由 PUNCHLINE 一锤定音</div>
+    </div>
+
+    <div class="arena">
+      <div class="fighter bull">
+        <div class="corner">▶ BULL</div>
+        <div class="hp-bar"><div class="hp-fill" data-hp="{{BULL_SCORE}}"></div></div>
+        <div class="avatar-box"><img src="avatars/{{BULL_ID}}.svg" alt=""></div>
+        <div class="fighter-name">{{BULL_NAME}}</div>
+        <div class="fighter-tag">{{BULL_TAG}} · {{BULL_SIGNAL_CN}}</div>
+        <div class="confidence">{{BULL_SCORE}}</div>
+        <div class="conf-label">SCORE</div>
+      </div>
+
+      <div class="vs-bolt">
+        ⚡<div class="sub">VS</div>
+      </div>
+
+      <div class="fighter bear">
+        <div class="corner">BEAR ◀</div>
+        <div class="hp-bar"><div class="hp-fill" data-hp="{{BEAR_SCORE}}"></div></div>
+        <div class="avatar-box"><img src="avatars/{{BEAR_ID}}.svg" alt=""></div>
+        <div class="fighter-name">{{BEAR_NAME}}</div>
+        <div class="fighter-tag">{{BEAR_TAG}} · {{BEAR_SIGNAL_CN}}</div>
+        <div class="confidence">{{BEAR_SCORE}}</div>
+        <div class="conf-label">SCORE</div>
+      </div>
+    </div>
+
+    <!-- 3 ROUNDS DEBATE TRANSCRIPT -->
+    <div class="debate-rounds">
+      <!-- INJECT_DEBATE_ROUNDS -->
+    </div>
+
+    <div class="punchline">{{PUNCHLINE}}</div>
+
+    <!-- v2.9.1 · 评委汇总观点（agent 写的面板级分析，原先被静默丢弃） -->
+    <!-- INJECT_PANEL_INSIGHTS -->
+
+    <!-- v2.15.4 · 7 大流派各自评分（价值/成长/宏观/技术/中式/游资/量化）-->
+    <!-- INJECT_SCHOOL_SCORES -->
+  </div>
+
+  <!-- ─── 50 INVESTORS · JUDGE PANEL ─── -->
+  <div class="section-head" id="section-jury">
+    <div class="section-tag">03 / JURY</div>
+    <h2 class="section-title">评委打分板</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="panel-section">
+    <div class="panel-stats">
+      <div class="stat-tile bull"><div class="num">{{BULL_COUNT}}</div><div class="label">Bullish · 看多</div></div>
+      <div class="stat-tile neut"><div class="num">{{NEUT_COUNT}}</div><div class="label">Neutral · 观望</div></div>
+      <div class="stat-tile bear"><div class="num">{{BEAR_COUNT}}</div><div class="label">Bearish · 看空</div></div>
+      <div class="stat-tile total"><div class="num">{{CONSENSUS_PCT}}%</div><div class="label">Consensus · 共识</div></div>
+    </div>
+
+    <!-- JUDGING SEATS · 50 灯 -->
+    <div class="jury-board">
+      <div class="jury-row-label">JUDGE SEATS · {{TOTAL_COUNT}} 位评委实时投票 (亮绿 = 看多, 亮红 = 看空, 灰 = 中性)</div>
+      <div class="jury-seats" id="jury-seats">
+        <!-- INJECT_JURY_SEATS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CHAT ROOM MODE ─── -->
+  <div class="section-head" id="section-chat">
+    <div class="section-tag">04 / CHAT</div>
+    <h2 class="section-title">大佬群聊现场</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-title">
+        <div class="chat-room-icon">💬</div>
+        <div>
+          <div class="chat-room-name">Alpha Terminal · 群贤议事厅</div>
+          <div class="chat-room-meta">{{TOTAL_COUNT}} 位成员 · {{BULL_COUNT}} 看多 · {{BEAR_COUNT}} 看空 · 正在讨论 <strong>{{NAME}}</strong></div>
+        </div>
+      </div>
+      <div class="chat-filter-tabs">
+        <span class="chat-tab active" data-group="all">全部</span>
+        <span class="chat-tab" data-group="A">价值</span>
+        <span class="chat-tab" data-group="B">成长</span>
+        <span class="chat-tab" data-group="C">宏观</span>
+        <span class="chat-tab" data-group="D">技术</span>
+        <span class="chat-tab" data-group="E">中国</span>
+        <span class="chat-tab" data-group="F">游资</span>
+        <span class="chat-tab" data-group="G">量化</span>
+      </div>
+    </div>
+
+    <div class="chat-actions" style="padding: 12px 24px 0;">
+      <button class="chat-action-btn" id="expand-all">▼ 展开全部结论</button>
+      <button class="chat-action-btn" id="collapse-all">▲ 收起全部</button>
+      <button class="chat-action-btn" id="scroll-bull">⬇ 跳到看多最强</button>
+      <button class="chat-action-btn" id="scroll-bear">⬇ 跳到看空最强</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-system">— 系统通知 · {{GENERATED_AT}} · {{TOTAL_COUNT}} 位大佬已进入群聊 ·  Tab 切换流派 / 点评委席跳转个人结论 —</div>
+      <!-- INJECT_CHAT_MESSAGES -->
+    </div>
+
+    <div class="chat-footer">
+      <div class="chat-footer-avatar oo-eye">O.o</div>
+      <div class="chat-footer-text">Alpha Terminal 正在监听... 讨论基于 {{GENERATED_AT}} 数据</div>
+    </div>
+  </div>
+
+  <!-- ─── FRIENDLY LAYER · 一万块场景 ─── -->
+  <div class="friendly-trio">
+    <!-- INJECT_FRIENDLY_LAYER -->
+  </div>
+
+  <!-- ─── FUND MANAGERS · 抄作业面板 ─── -->
+  <div class="section-head">
+    <div class="section-tag">04 / LEGENDS</div>
+    <h2 class="section-title">大佬抄作业</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="fund-mgr-section">
+    <!-- INJECT_FUND_MANAGERS -->
+  </div>
+
+  <!-- ─── 19 维 DEEP SCAN ─── -->
+  <div class="section-head" id="section-scan">
+    <div class="section-tag">05 / DEEP SCAN</div>
+    <h2 class="section-title">全维深度透视</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="deep-scan">
+    <div class="cat-label">💰 财务面 · FUNDAMENTALS</div>
+    <div class="dim-row">
+      <!-- INJECT_DIM_FINANCIAL -->
+    </div>
+
+    <div class="cat-label">📈 行情面 · MARKET ACTION</div>
+    <div class="dim-row">
+      <!-- INJECT_DIM_MARKET -->
+    </div>
+
+    <div class="cat-label">🏭 行业面 · INDUSTRY CHAIN</div>
+    <div class="dim-row">
+      <!-- INJECT_DIM_INDUSTRY -->
+    </div>
+
+    <div class="cat-label">🏢 公司面 · COMPANY</div>
+    <div class="dim-row">
+      <!-- INJECT_DIM_COMPANY -->
+    </div>
+
+    <div class="cat-label">🌍 环境面 · ENVIRONMENT</div>
+    <div class="dim-row">
+      <!-- INJECT_DIM_ENV -->
+    </div>
+
+    <div class="cat-label">🛡️ 安全面 · SAFETY & SENTIMENT</div>
+    <div class="dim-row">
+      <!-- INJECT_DIM_SAFETY -->
+    </div>
+  </div>
+
+  <!-- ─── INSTITUTIONAL MODELING · v2.0 ─── -->
+  <div class="section-head" id="section-modeling">
+    <div class="section-tag">06 / INSTITUTIONAL MODELING</div>
+    <h2 class="section-title">机构级估值建模</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="inst-modeling-wrap" style="padding:0 4px">
+    <!-- INJECT_INSTITUTIONAL_MODELING -->
+  </div>
+
+  <!-- v3.3 · 分业务收入模型 (segmental_model.json 存在时才渲染) -->
+  <!-- INJECT_SEGMENTAL -->
+
+  <!-- ─── RISKS ─── -->
+  <div class="section-head" id="section-risks">
+    <div class="section-tag">07 / RISKS</div>
+    <h2 class="section-title">核心风险清单</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="risk-box">
+    <ul>
+      <!-- INJECT_RISKS -->
+    </ul>
+  </div>
+
+  <!-- ─── BUY ZONES ─── -->
+  <div class="section-head" id="section-zones">
+    <div class="section-tag">08 / ZONES</div>
+    <h2 class="section-title">四派系买入区间</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="zones-grid">
+    <div class="zone"><div class="zone-label">VALUE 价值派</div><div class="zone-price">¥{{ZONE_VALUE_PRICE}}</div><div class="zone-rationale">{{ZONE_VALUE_RATIONALE}}</div></div>
+    <div class="zone"><div class="zone-label">GROWTH 成长派</div><div class="zone-price">¥{{ZONE_GROWTH_PRICE}}</div><div class="zone-rationale">{{ZONE_GROWTH_RATIONALE}}</div></div>
+    <div class="zone"><div class="zone-label">TECH 技术派</div><div class="zone-price">¥{{ZONE_TECH_PRICE}}</div><div class="zone-rationale">{{ZONE_TECH_RATIONALE}}</div></div>
+    <div class="zone"><div class="zone-label">YOUZI 游资派</div><div class="zone-price">¥{{ZONE_YOUZI_PRICE}}</div><div class="zone-rationale">{{ZONE_YOUZI_RATIONALE}}</div></div>
+  </div>
+
+  <!-- v3.6.0 · 分享卡 + QR · 报告链接二维码 + 一句话总结 -->
+  <div class="share-qr-card">
+    <canvas class="qr-canvas" id="report-qr-canvas" width="200" height="200" aria-label="报告链接二维码"></canvas>
+    <div class="qr-text">
+      <div class="qr-title">📱 SHARE · 扫码看完整报告</div>
+      <div class="qr-desc"><strong>{{NAME}}</strong> · {{TICKER}} · 总评 <strong>{{OVERALL_SCORE_INT}}/100</strong> · {{VERDICT_LABEL}}</div>
+      <div class="qr-url" id="report-qr-url">本地路径 · 用 <code>--remote</code> 生成可扫公网链接</div>
+    </div>
+  </div>
+
+  <!-- ─── 一键分享 + QR Code ─── -->
+  <div style="text-align:center;padding:30px 0 20px;border-top:1px solid #e5e7eb;margin-top:30px">
+    <button onclick="document.getElementById('share-overlay').style.display='flex'" style="background:linear-gradient(135deg,#06b6d4,#8b5cf6);color:#fff;border:none;padding:14px 36px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(6,182,212,0.3);letter-spacing:1px;transition:transform .15s">
+      📤 一键分享报告
+    </button>
+    <div style="margin-top:12px;font-size:12px;color:#9ca3af">截图分享到朋友圈 / 微信群 / 社区</div>
+  </div>
+
+  <!-- Share overlay modal — 包含完整分析摘要 -->
+  <div id="share-overlay" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;justify-content:center;align-items:center;backdrop-filter:blur(4px)">
+    <div style="background:#fff;border-radius:16px;padding:28px 24px;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-height:90vh;overflow-y:auto">
+      <!-- 标题 -->
+      <div style="font-size:22px;font-weight:900;color:#111">{{NAME}}</div>
+      <div style="font-size:14px;color:#6b7280;margin:4px 0 12px">{{TICKER}} · ¥{{PRICE}}</div>
+
+      <!-- 评分 -->
+      <div style="background:linear-gradient(135deg,#fef3c7,#fff7ed);border:2px solid #f59e0b;border-radius:16px;padding:16px;margin-bottom:16px">
+        <div style="font-size:48px;font-weight:900;color:#d97706">{{OVERALL_SCORE_INT}}<span style="font-size:20px;color:#92400e">/100</span></div>
+        <div style="font-size:16px;font-weight:700;color:#92400e">{{VERDICT_LABEL}}</div>
+      </div>
+
+      <!-- 投票分布 -->
+      <div style="text-align:left;margin-bottom:14px;padding:12px;background:#f9fafb;border-radius:10px">
+        <div style="font-size:11px;color:#6b7280;margin-bottom:8px;letter-spacing:1px">51 位大佬投票</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <span style="font-size:11px;color:#6b7280;width:40px">看多</span>
+          <div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden">
+            <div style="height:100%;background:#10b981;width:calc({{BULL_COUNT}} / {{TOTAL_COUNT}} * 100%)"></div>
+          </div>
+          <span style="font-size:12px;font-weight:700;color:#10b981;width:30px">{{BULL_COUNT}}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <span style="font-size:11px;color:#6b7280;width:40px">中性</span>
+          <div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden">
+            <div style="height:100%;background:#94a3b8;width:calc({{NEUT_COUNT}} / {{TOTAL_COUNT}} * 100%)"></div>
+          </div>
+          <span style="font-size:12px;font-weight:700;color:#6b7280;width:30px">{{NEUT_COUNT}}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:11px;color:#6b7280;width:40px">看空</span>
+          <div style="flex:1;height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden">
+            <div style="height:100%;background:#ef4444;width:calc({{BEAR_COUNT}} / {{TOTAL_COUNT}} * 100%)"></div>
+          </div>
+          <span style="font-size:12px;font-weight:700;color:#ef4444;width:30px">{{BEAR_COUNT}}</span>
+        </div>
+      </div>
+
+      <!-- Punchline -->
+      <div style="padding:10px;background:#fef2f2;border-left:3px solid #f59e0b;text-align:left;margin-bottom:14px;border-radius:0 8px 8px 0">
+        <div style="font-size:12px;font-weight:700;color:#92400e">💬 {{PUNCHLINE}}</div>
+      </div>
+
+      <!-- 杀猪盘 -->
+      <div style="margin-bottom:14px;font-size:12px">
+        <span style="color:{{TRAP_COLOR}}">{{TRAP_EMOJI}} 杀猪盘检测：{{TRAP_LEVEL}}</span>
+      </div>
+
+      <!-- QR -->
+      <div style="margin-bottom:12px">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://github.com/wbh604/UZI-Skill&color=06b6d4" alt="QR" style="width:80px;height:80px;border-radius:6px" />
+        <div style="font-size:10px;color:#9ca3af;margin-top:4px">扫码获取分析工具</div>
+      </div>
+
+      <a href="https://github.com/wbh604/UZI-Skill" target="_blank" style="font-size:12px;color:#06b6d4;text-decoration:none;font-weight:600">github.com/wbh604/UZI-Skill</a>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid #f3f4f6">
+        <div style="font-size:9px;color:#d1d5db;letter-spacing:2px">POWERED BY FloatFu-true · 不构成投资建议</div>
+      </div>
+      <button onclick="this.parentElement.parentElement.style.display='none'" style="margin-top:10px;background:#f3f4f6;border:none;padding:8px 20px;border-radius:8px;color:#6b7280;cursor:pointer;font-size:12px">关闭</button>
+    </div>
+  </div>
+
+  <footer>
+    <strong>⚠️ DISCLAIMER · 免责声明</strong><br>
+    本报告由 AI 模型基于公开信息生成，所有数据通过 akshare / yfinance / 公开数据接口获取，可能存在滞后或误差。
+    报告中的评分和建议均为模拟，不代表任何真实投资者的实际观点。
+    本报告不构成任何投资建议，投资者应独立判断并承担投资风险。<br><br>
+    Generated by <strong>FloatFu-true · UZI-Skill v2.2.0</strong> · {{GENERATED_AT}} · <span class="oo-eye">O.o</span><br>
+    <a href="https://github.com/wbh604/UZI-Skill" target="_blank" style="color:#06b6d4;text-decoration:none;font-size:13px;margin-top:6px;display:inline-block">⭐ GitHub · 点击查看最新版本 → github.com/wbh604/UZI-Skill</a><br>
+    <span style="font-size:10px;color:#d1d5db;letter-spacing:2px">POWERED BY FloatFu-true</span>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- HIDDEN SHARE-CARD · 1080×1920 · 朋友圈竖图                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="share-card">
+  <div class="sc-topbar">
+    <div class="sc-brand">FloatFu-true <em>· 游资 SKILLS</em></div>
+    <div class="sc-badge">DEEP SCAN</div>
+  </div>
+
+  <h1 class="sc-name">{{NAME}}</h1>
+  <div class="sc-code-row">
+    <div class="sc-code">{{TICKER}}</div>
+    <div class="sc-price">¥{{PRICE}}</div>
+    <div class="sc-change {{CHANGE_DIR}}">{{CHANGE_PCT}}</div>
+  </div>
+
+  <div class="sc-score-box">
+    <div>
+      <span class="sc-score-giant">{{OVERALL_SCORE_INT}}</span><span class="sc-score-unit">/100</span>
+    </div>
+    <div class="sc-verdict">{{VERDICT_LABEL}}</div>
+  </div>
+
+  <div class="sc-section-title">// 50 位大佬投票</div>
+  <div class="sc-votes">
+    <!-- INJECT_VOTE_BARS -->
+  </div>
+
+  <div class="sc-section-title">// 谁最看好你</div>
+  <div class="sc-best">
+    <!-- INJECT_TOP3_BULLS -->
+  </div>
+
+  <!-- v2.9.1 · 对称补 Top 3 看空 -->
+  <div class="sc-section-title">// 谁最看空你</div>
+  <div class="sc-best">
+    <!-- INJECT_TOP3_BEARS -->
+  </div>
+
+  <div class="sc-punchline-box">
+    <div class="lbl">PUNCHLINE</div>
+    <div class="txt">{{PUNCHLINE}}</div>
+  </div>
+
+  <div class="sc-trap {{TRAP_COLOR}}">
+    <span style="font-size:40px">{{TRAP_EMOJI}}</span>
+    <span>杀猪盘体检：{{TRAP_LEVEL}}</span>
+  </div>
+
+  <div style="text-align:center;margin:20px 0 10px">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://github.com/wbh604/UZI-Skill&color=06b6d4" alt="QR" style="width:100px;height:100px;border-radius:6px" />
+    <div style="font-size:18px;color:#999;margin-top:6px">扫码获取分析工具</div>
+  </div>
+
+  <div class="sc-footer">
+    <span>{{GENERATED_AT}} · POWERED BY FloatFu-true · 不构成投资建议</span>
+    <span class="oo-big">O.o</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- HIDDEN WAR REPORT · 1920×1080 · 微信群横图                    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="war-report">
+  <div class="wr-top">
+    <div class="wr-brand">FloatFu-true <em>· 游资 SKILLS</em></div>
+    <div class="wr-date">{{GENERATED_AT}}</div>
+  </div>
+  <div class="wr-body">
+    <div class="wr-left">
+      <div>
+        <div class="wr-name">{{NAME}}</div>
+        <div class="wr-code">{{TICKER}} · {{INDUSTRY}}</div>
+        <div class="wr-one">{{ONE_LINER}}</div>
+      </div>
+      <div class="wr-punch">💥 {{PUNCHLINE}}</div>
+      <div class="wr-fight">
+        <div class="wr-fi bull"><img src="avatars/{{BULL_ID}}.svg"><div class="fn">{{BULL_NAME}}</div><div class="fs">{{BULL_SCORE}}</div></div>
+        <div class="wr-vs">⚡VS</div>
+        <div class="wr-fi bear"><img src="avatars/{{BEAR_ID}}.svg"><div class="fn">{{BEAR_NAME}}</div><div class="fs">{{BEAR_SCORE}}</div></div>
+      </div>
+    </div>
+    <div class="wr-right">
+      <div class="wr-score-label">ALPHA SCORE</div>
+      <div class="wr-score">{{OVERALL_SCORE_INT}}</div>
+      <div class="wr-verdict">{{VERDICT_LABEL}}</div>
+      <div class="wr-trap">{{TRAP_EMOJI}} {{TRAP_LEVEL}}</div>
+    </div>
+  </div>
+  <div class="wr-footer">
+    <span>Stock Deep Analyzer · 不构成投资建议 · 数据仅供参考</span>
+    <span class="wr-oo">O.o</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ─── Boot overlay dismiss ───
+  setTimeout(() => {
+    const o = document.getElementById('boot-overlay');
+    if (o) o.classList.add('done');
+    setTimeout(() => o && o.remove(), 700);
+  }, reduced ? 0 : 1700);
+
+  // ─── Score counter animation: count up from 0 ───
+  function animateCount(el, target, duration = 1400) {
+    if (reduced) { el.textContent = target; return; }
+    const start = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    function tick(now) {
+      const p = Math.min(1, (now - start) / duration);
+      el.textContent = Math.floor(ease(p) * target);
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  }
+  setTimeout(() => {
+    document.querySelectorAll('.score-giant, .fighter .confidence').forEach(el => {
+      const target = parseInt(el.textContent.trim(), 10);
+      if (!isNaN(target)) animateCount(el, target);
+    });
+    // animate HP bars
+    document.querySelectorAll('.hp-fill').forEach(el => {
+      const hp = parseInt(el.dataset.hp || '0', 10);
+      el.style.width = Math.max(0, Math.min(100, hp)) + '%';
+    });
+  }, reduced ? 0 : 1700);
+
+  // ─── Jury seats: stagger light-up like a stadium ───
+  const seats = document.querySelectorAll('.seat');
+  seats.forEach((seat, i) => {
+    seat.style.animationDelay = (1700 + i * 35) + 'ms';
+  });
+
+  // ─── Chat messages: cascade in (shorter + capped) ───
+  const msgs = document.querySelectorAll('.chat-msg');
+  msgs.forEach((m, i) => {
+    // Cap the cascade at 1.8 seconds total so later messages don't hide forever
+    const delay = Math.min(1800, 1000 + i * 15);
+    m.style.animationDelay = delay + 'ms';
+  });
+
+  // ─── Chat room filter tabs ───
+  document.querySelectorAll('.chat-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.chat-tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      const g = t.dataset.group;
+      document.querySelectorAll('.chat-msg').forEach(c => {
+        c.style.display = (g === 'all' || c.dataset.group === g) ? '' : 'none';
+      });
+    });
+  });
+
+  // ─── Jury seat click → scroll to + flash chat message ───
+  function flashMessage(targetId) {
+    const msg = document.getElementById(targetId);
+    if (!msg) return;
+    // Reset tab filter to "all"
+    document.querySelectorAll('.chat-tab').forEach(x => x.classList.remove('active'));
+    const allTab = document.querySelector('.chat-tab[data-group="all"]');
+    if (allTab) allTab.classList.add('active');
+    // Force ALL chat messages to be visible AND bypass any lingering animation
+    document.querySelectorAll('.chat-msg').forEach(c => {
+      c.style.display = '';
+      c.classList.add('finalize');  // force opacity:1 immediately
+    });
+    // Auto-expand the target's details
+    const det = msg.querySelector('details');
+    if (det) det.open = true;
+    // Smooth scroll + flash
+    msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    msg.classList.remove('flash-highlight');
+    void msg.offsetWidth;
+    msg.classList.add('flash-highlight');
+    setTimeout(() => msg.classList.remove('flash-highlight'), 1700);
+  }
+  document.querySelectorAll('.seat').forEach(s => {
+    s.addEventListener('click', () => {
+      const t = s.dataset.target;
+      if (t) flashMessage(t);
+    });
+  });
+
+  // ─── Expand / collapse all conclusions ───
+  document.getElementById('expand-all')?.addEventListener('click', () => {
+    document.querySelectorAll('.chat-msg details').forEach(d => d.open = true);
+  });
+  document.getElementById('collapse-all')?.addEventListener('click', () => {
+    document.querySelectorAll('.chat-msg details').forEach(d => d.open = false);
+  });
+  document.getElementById('scroll-bull')?.addEventListener('click', () => {
+    const first = document.querySelector('.chat-msg.bullish');
+    if (first) flashMessage(first.id);
+  });
+  document.getElementById('scroll-bear')?.addEventListener('click', () => {
+    const first = document.querySelector('.chat-msg.bearish');
+    if (first) flashMessage(first.id);
+  });
+})();
+
+// ─── v3.6.0 · Phase A · 视觉/交互升级 ─────────────────────────────
+(function() {
+  // 1) Dark mode toggle · 持久化到 localStorage · 跟随 prefers-color-scheme 初始化
+  const KEY = 'uzi-theme';
+  const root = document.documentElement;
+  const stored = localStorage.getItem(KEY);
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initial = stored || (prefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', initial);
+
+  const btn = document.getElementById('theme-toggle');
+  function syncIcon() {
+    if (!btn) return;
+    btn.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+  }
+  syncIcon();
+  btn?.addEventListener('click', () => {
+    const cur = root.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(KEY, next);
+    syncIcon();
+  });
+
+  // 2) Sticky TOC · scroll-spy via IntersectionObserver
+  const tocLinks = document.querySelectorAll('.toc-rail .toc-item');
+  const sectionMap = {};
+  tocLinks.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    const sec = document.getElementById(id);
+    if (sec) sectionMap[id] = a;
+  });
+  const setActive = (id) => {
+    tocLinks.forEach(a => a.classList.toggle('active', a === sectionMap[id]));
+  };
+  if ('IntersectionObserver' in window && Object.keys(sectionMap).length) {
+    const io = new IntersectionObserver((entries) => {
+      const top = entries.filter(e => e.isIntersecting)
+                         .sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top)[0];
+      if (top) setActive(top.target.id);
+    }, { rootMargin: '-30% 0px -50% 0px', threshold: 0 });
+    Object.keys(sectionMap).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+  }
+  // smooth scroll · default already covered by CSS scroll-behavior · 加保险
+  tocLinks.forEach(a => a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', '#' + id);
+    }
+  }));
+
+  // 2b) TOC 折叠 / 展开 · issue #79 · 状态持久化到 localStorage
+  const TOC_KEY = 'uzi-toc-collapsed';
+  const tocRail = document.getElementById('toc-rail');
+  const tocToggle = document.getElementById('toc-toggle');
+  if (tocRail && tocToggle) {
+    const applyTocState = (collapsed) => {
+      tocRail.classList.toggle('collapsed', collapsed);
+      tocToggle.textContent = collapsed ? '☰' : '◀';
+      tocToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      tocToggle.setAttribute('aria-label', collapsed ? '展开导航栏' : '折叠导航栏');
+    };
+    applyTocState(localStorage.getItem(TOC_KEY) === '1');
+    tocToggle.addEventListener('click', () => {
+      const collapsed = !tocRail.classList.contains('collapsed');
+      applyTocState(collapsed);
+      localStorage.setItem(TOC_KEY, collapsed ? '1' : '0');
+    });
+  }
+
+  // 3) Count-up animation · 给指定数字加 .count-up 类 · 进入视口时动画
+  function animateNumber(el) {
+    const target = parseFloat(el.dataset.value || el.textContent);
+    if (isNaN(target)) return;
+    const decimals = el.dataset.decimals ? parseInt(el.dataset.decimals) : 0;
+    const duration = 900;
+    const start = performance.now();
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    function tick(now) {
+      const p = Math.min(1, (now - start) / duration);
+      const val = target * easeOut(p);
+      el.textContent = decimals ? val.toFixed(decimals) : Math.round(val);
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = decimals ? target.toFixed(decimals) : target;
+    }
+    requestAnimationFrame(tick);
+  }
+  // 自动给已有大数字加 count-up（不强制：用户已用模板的话不需要改）
+  const bigScores = document.querySelectorAll(
+    '.score-giant, .sc-score-giant, .hero-score-num, .confidence'
+  );
+  if ('IntersectionObserver' in window) {
+    const io2 = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !e.target.dataset.animated) {
+          e.target.dataset.animated = '1';
+          animateNumber(e.target);
+          io2.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    bigScores.forEach(el => {
+      const v = parseFloat(el.textContent);
+      if (!isNaN(v)) {
+        el.dataset.value = v;
+        io2.observe(el);
+      }
+    });
+  }
+
+  // 4) 名词悬浮 tooltip · 自动给术语包 .jargon · 文档加载完扫描内容并替换
+  const TERMS = {
+    'PE': 'Price/Earnings · 市盈率 = 股价 / 每股盈利。10x 便宜 · 30x 平均 · 80x+ 高估值需要高增长支撑。',
+    'PEG': 'PE / 增长率。<1 通常便宜 · 林奇经典指标。',
+    'PB': 'Price/Book · 市净率 = 股价 / 每股净资产。<1 是历史地板 · >5 看 ROE 是否撑得起。',
+    'ROE': '净资产收益率 = 净利润 / 净资产。巴菲特红线 15% · 连续 10 年 >20% 是真护城河。',
+    'DCF': 'Discounted Cash Flow · 现金流折现。把未来 10 年自由现金流折回今天给一个内在价值。',
+    'IRR': '内部回报率 · LBO/PE 视角下"我用 5x 杠杆能赚多少年化"。20%+ 是 PE 买方门槛。',
+    'WACC': '加权平均资本成本 · DCF 折现率。A 股科技 ~9% · 公用 ~6%。',
+    'EV/EBITDA': '企业价值 / 息税折旧前利润 · 跨杠杆可比。',
+    'LBO': 'Leveraged Buyout · 杠杆收购。PE 基金标准估值法 · 测能不能 5 年退出赚 IRR 20%+。',
+    'YTD': 'Year-to-date · 年初至今涨跌幅。',
+    'TTM': 'Trailing 12 months · 过去 12 个月滚动数据 · 比年报更新。',
+    'LHB': '龙虎榜 · 大额成交席位披露 · A 股看游资动向的核心数据。',
+  };
+  function tooltipify() {
+    // v3.6.0 · 安全 DOM 构造（不用 innerHTML · 避免 XSS）·
+    // text node 拆成 [文本片段] + [<.jargon>] 用 DOM API 拼接，
+    // 所有用户/数据内容走 textContent / setAttribute（自动转义）
+    const targets = document.querySelectorAll(
+      '.panel-insights, .dim-card .body, .friendly-layer, .risk-box, .punchline, .dim-row, ' +
+      '.school-scores .desc, .round-bull, .round-bear, .qr-desc'
+    );
+    // 词条按长度降序 · 防止短词先匹配（如 "PE" 先匹配掉 "PEG" 里的 PE）
+    const terms = Object.entries(TERMS).sort((a, b) => b[0].length - a[0].length);
+    const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
+    const combinedRe = new RegExp('\\b(' + terms.map(([t]) => escapeRe(t)).join('|') + ')\\b', 'g');
+
+    targets.forEach(node => {
+      const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, null);
+      const todo = [];
+      let t;
+      while ((t = walker.nextNode())) {
+        if (t.parentElement && t.parentElement.closest('.jargon, a, code, script, style')) continue;
+        todo.push(t);
+      }
+      todo.forEach(textNode => {
+        const raw = textNode.textContent;
+        combinedRe.lastIndex = 0;
+        if (!combinedRe.test(raw)) return;
+        combinedRe.lastIndex = 0;
+
+        const frag = document.createDocumentFragment();
+        let lastIdx = 0;
+        let m;
+        while ((m = combinedRe.exec(raw)) !== null) {
+          if (m.index > lastIdx) {
+            // 前置普通文本 · textContent 自动转义
+            frag.appendChild(document.createTextNode(raw.slice(lastIdx, m.index)));
+          }
+          const span = document.createElement('span');
+          span.className = 'jargon';
+          // setAttribute + textContent 都安全 · 不解析 HTML
+          span.setAttribute('data-tip', TERMS[m[1]] || '');
+          span.textContent = m[1];
+          frag.appendChild(span);
+          lastIdx = m.index + m[1].length;
+        }
+        if (lastIdx < raw.length) {
+          frag.appendChild(document.createTextNode(raw.slice(lastIdx)));
+        }
+        textNode.replaceWith(frag);
+      });
+    });
+  }
+  // defer · 等 INJECT_* 注入完毕
+  setTimeout(tooltipify, 50);
+
+  // 5) Report QR code · 用 location.href 生成 · 仅在 http(s) 协议下显示有意义内容
+  function drawQR(canvas, text) {
+    // 极简 QR · 用 Google Chart API（远程）· 失败 fallback 文本
+    if (!canvas) return;
+    const url = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=0&data=' +
+                encodeURIComponent(text);
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+    img.onerror = () => {
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#f3f4f6';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#6b7280';
+      ctx.font = '11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('QR offline', canvas.width / 2, canvas.height / 2);
+    };
+    img.src = url;
+  }
+  const qrCanvas = document.getElementById('report-qr-canvas');
+  const qrUrl = document.getElementById('report-qr-url');
+  if (qrCanvas) {
+    const proto = location.protocol;
+    if (proto === 'http:' || proto === 'https:') {
+      drawQR(qrCanvas, location.href);
+      if (qrUrl) qrUrl.textContent = location.href;
+    } else {
+      // file:// · 二维码无意义 · 提示走 --remote
+      const ctx = qrCanvas.getContext('2d');
+      ctx.fillStyle = '#f3f4f6';
+      ctx.fillRect(0, 0, qrCanvas.width, qrCanvas.height);
+      ctx.fillStyle = '#9ca3af';
+      ctx.font = '10px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('本地 file://', qrCanvas.width / 2, qrCanvas.height / 2 - 6);
+      ctx.fillText('用 --remote', qrCanvas.width / 2, qrCanvas.height / 2 + 8);
+      ctx.fillText('生成公网链接', qrCanvas.width / 2, qrCanvas.height / 2 + 22);
+    }
+  }
+})();
+</script>
+</body>
+</html>
